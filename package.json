@@ -1,0 +1,11 @@
+{
+  "name": "lienpham-site-v2",
+  "private": true,
+  "description": "Preview rebuild of lienpham.space. Not the live domain.",
+  "scripts": {
+    "start": "echo 'Static page plus /api functions; use vercel dev if you need a local server.'"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.0.0"
+  }
+}

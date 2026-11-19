@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lien Pham — Free 15-minute assessment</title>
+  <meta name="description" content="Get one clear next move for the follow-up, CRM or admin eating your week. A free 15-minute assessment with Lien Pham.">
+  <style>
+    :root {
+      --ink: #113F34;
+      --paper: #F3EBDB;
+      --white: #FFFDF7;
+      --muted: #625B52;
+      --sand: #EFE3CF;
+      --line: #D9CBB7;
+      --red: #F41C5E;
+      --red-dark: #B81243;
+      --pink: #F8CDD9;
+      --sub: #4F5A52;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a { color: var(--red); }
+    a:hover { color: var(--red-dark); }
+    .preview-banner {
+      background: var(--ink);
+      color: var(--white);
+      text-align: center;
+      font-size: 0.82rem;
+      padding: 8px 16px;
+      letter-spacing: 0.01em;
+    }
+    .preview-banner strong { color: var(--pink); }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 24px 0;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav a { color: var(--sub); text-decoration: none; font-size: 0.92rem; }
+    nav a:hover { color: var(--ink); }
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--red-dark); color: #fff; }
+    .btn[disabled], .btn.is-disabled {
+      background: var(--line);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { background: var(--sand); color: var(--ink); }
+    .hero, .section, .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+    .hero { padding-top: 48px; padding-bottom: 32px; }
+    .eyebrow {
+      display: inline-block;
+      background: var(--pink);
+      color: var(--red-dark);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(2rem, 4.4vw, 3.25rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      max-width: 16ch;
+    }
+    .lede { font-size: 1.15rem; color: var(--sub); max-width: 42rem; margin: 0 0 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .who { color: var(--muted); font-size: 0.95rem; margin: 22px 0 0; max-width: 40rem; }
+    h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.02em; margin: 0 0 12px; }
+    h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .grid-4, .steps {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    @media (min-width: 720px) {
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    .card, .form-card, .voice-card, .paid, .about-card, .faq details {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+    .card, .voice-card, .paid, .about-card { padding: 20px; }
+    .card p, .paid p, .about-card p, .faq p { color: var(--sub); margin: 0; }
+    .num {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--red-dark);
+      margin-bottom: 8px;
+    }
+    form { display: grid; gap: 16px; padding: 28px; }
+    .form-intro { padding: 28px 28px 0; }
+    .form-intro p { color: var(--sub); margin: 0; }
+    label, .legend { display: block; font-weight: 650; margin-bottom: 6px; }
+    .hint { display: block; color: var(--muted); font-weight: 400; font-size: 0.88rem; margin-top: 4px; }
+    input, textarea, select {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px 12px;
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    input:focus, textarea:focus, select:focus {
+      outline: 2px solid var(--ink);
+      outline-offset: 1px;
+    }
+    .row { display: grid; gap: 16px; }
+    @media (min-width: 720px) {
+      .row-2 { grid-template-columns: 1fr 1fr; }
+      .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .choices { display: grid; gap: 8px; }
+    @media (min-width: 720px) { .choices { grid-template-columns: repeat(3, 1fr); } }
+    .choice {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: var(--paper);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .choice:has(input:checked) {
+      background: var(--pink);
+      border-color: var(--red);
+    }
+    .choice input { width: auto; margin: 0 8px 0 0; accent-color: var(--red); }
+    .hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+    .form-note { color: var(--muted); font-size: 0.9rem; margin: 0; }
+    .status {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 12px;
+    }
+    .status.is-error { display: block; background: #fde8ee; color: var(--red-dark); }
+    .status.is-ok { display: block; background: #e5efe9; color: var(--ink); }
+    .voice-card { display: grid; gap: 10px; }
+    .voice-card .tag {
+      justify-self: start;
+      background: var(--sand);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .paid { margin-top: 16px; }
+    .faq details { padding: 4px 20px; margin: 0 0 10px; }
+    .faq summary { cursor: pointer; font-weight: 650; padding: 14px 0; }
+    .faq details p { padding: 0 0 16px; }
+    footer { border-top: 1px solid var(--line); }
+    .footer-inner { padding-top: 28px; padding-bottom: 40px; color: var(--muted); font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">This is a <strong>preview</strong> of a shorter lienpham.space. It is not the live site, and search engines should not index it.</div>
+
+  <header>
+    <a class="logo" href="#top">LIEN PHAM</a>
+    <nav>
+      <a href="#assessment">Assessment</a>
+      <a href="#how">How it works</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">Free 15-minute assessment</p>
+      <h1>Get one clear next move for the work eating your week.</h1>
+      <p class="lede">Show me the follow-up, CRM mess or admin that keeps stalling. I’ll help you find one practical next move in a free 15-minute conversation.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
+        <a class="btn btn-ghost" href="#voice">Voice assistant — not live yet</a>
+      </div>
+      <p class="who">For small business owners and working women running a 9-to-5 or a business, drowning in follow-up, messy tools or work that only lives in someone’s head.</p>
+    </section>
+
+    <section class="section" id="assessment">
+      <h2>Tell me where the work gets stuck.</h2>
+      <p class="lede">Five short answers help me prepare. If it’s a fit, I’ll be in touch to book the 15 minutes. This form does not book a time automatically.</p>
+
+      <div class="form-card">
+        <form id="assessment-form" action="/api/request" method="post" novalidate>
+          <div class="row row-2">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" autocomplete="name" required maxlength="80">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required maxlength="254">
+            </div>
+          </div>
+          <div class="row row-2">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required maxlength="40">
+            </div>
+            <div>
+              <label for="businessName">Business name</label>
+              <input id="businessName" name="businessName" required maxlength="120">
+            </div>
+          </div>
+          <div>
+            <label for="businessWebsite">Website <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+            <input id="businessWebsite" name="businessWebsite" type="url" placeholder="https://" maxlength="200">
+          </div>
+
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend class="legend">1. If one thing could improve in the next 30 days, what would you want most?</legend>
+            <span class="hint">Choose the result that matters most, then name the one problem you would fix to get there.</span>
+            <div class="choices" style="margin-top:10px">
+              <label class="choice"><input type="radio" name="outcome" value="more-money" required> Make more money</label>
+              <label class="choice"><input type="radio" name="outcome" value="hours-back"> Get hours back</label>
+              <label class="choice"><input type="radio" name="outcome" value="happier-customers"> Make customers happier</label>
+            </div>
+          </fieldset>
+          <div>
+            <label for="problem">The one problem you would fix first</label>
+            <textarea id="problem" name="problem" required minlength="10" maxlength="2000" placeholder="Be specific. “Follow-up is messy” is less useful than “new enquiries sit in Instagram DMs until I remember them.”"></textarea>
+          </div>
+          <div>
+            <label for="repeatedTask">2. What’s the task you or your team repeat most often every week?</label>
+            <span class="hint">A couple of sentences is enough: the steps, who does them, the tools, and how often it repeats.</span>
+            <textarea id="repeatedTask" name="repeatedTask" required minlength="20" maxlength="2000"></textarea>
+          </div>
+          <div>
+            <label for="friction">3. Where do things usually slow down, get stuck, or fall through the cracks?</label>
+            <textarea id="friction" name="friction" required minlength="20" maxlength="2000"></textarea>
+          </div>
+          <div>
+            <label for="hoursOwner">4. How many hours a week does that eat, and who’s doing it?</label>
+            <span class="hint">A rough estimate is fine.</span>
+            <textarea id="hoursOwner" name="hoursOwner" required minlength="8" maxlength="2000"></textarea>
+          </div>
+          <div>
+            <label for="changeIfFixed">5. If that one thing ran more smoothly, what would change for you?</label>
+            <textarea id="changeIfFixed" name="changeIfFixed" required minlength="20" maxlength="2000"></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="company_fax">Company fax</label>
+            <input id="company_fax" name="company_fax" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="form-note">Your answers stay private and are only used to prepare this assessment. I don’t pass them on, and this does not book a time automatically.</p>
+          <div id="form-status" class="status" role="status"></div>
+          <div>
+            <button class="btn" type="submit" id="submit-btn">Request my free assessment</button>
+          </div>
+        </form>
+        <div id="form-success" hidden style="padding:36px 28px 40px">
+          <h3>Got it. I’ll read this properly.</h3>
+          <p>If it’s a fit, I’ll email you to book the 15 minutes. There’s nothing else you need to do right now.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What you walk away with</h2>
+      <p class="lede">The free session is a focused conversation and one practical recommendation — not the full written audit.</p>
+      <div class="grid-4">
+        <div class="card">
+          <h3>The recurring work</h3>
+          <p>The task you or your team keep doing every week.</p>
+        </div>
+        <div class="card">
+          <h3>The point of friction</h3>
+          <p>Where that work slows, gets stuck, or falls through the cracks.</p>
+        </div>
+        <div class="card">
+          <h3>The time it takes</h3>
+          <p>A practical estimate of the hours, and who owns the work.</p>
+        </div>
+        <div class="card">
+          <h3>One next move</h3>
+          <p>One recommendation matched to the outcome you care about.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="card">
+          <span class="num">01</span>
+          <h3>Tell me about the work</h3>
+          <p>Answer five questions so the conversation can focus on your real bottleneck.</p>
+        </div>
+        <div class="card">
+          <span class="num">02</span>
+          <h3>I review your answers</h3>
+          <p>If it’s a fit, I’ll be in touch to book a free 15-minute chat. Submission does not book a time automatically.</p>
+        </div>
+        <div class="card">
+          <span class="num">03</span>
+          <h3>Leave with one next move</h3>
+          <p>You get a clear first action. If you want the full map and a written report, that’s the paid audit.</p>
+        </div>
+      </div>
+
+      <div class="paid">
+        <h3>Want the full picture later?</h3>
+        <p>The paid audit is a deeper look at how leads, CRM, follow-up and admin actually run, plus a short written report. Details on the call. Implementation, if you want it, is a separate one-time piece of work — I don’t stay on for ongoing maintenance.</p>
+      </div>
+    </section>
+
+    <section class="section" id="voice">
+      <h2>Talk it through with a voice assistant</h2>
+      <div class="voice-card">
+        <span class="tag">Not live yet · limited free spots</span>
+        <h3>Talk to my voice assistant</h3>
+        <p>A free, capped 15-minute voice assessment is being set up. It isn’t available on this preview, and no voice agent is connected here. When the first 20 spots open, this is where you’ll start the call — after leaving your name and email.</p>
+        <button class="btn is-disabled" type="button" disabled aria-disabled="true">Talk to my voice assistant (limited free spots)</button>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>About Lien</h2>
+      <div class="about-card">
+        <p>I’m Lien Pham, a working mum in Sydney. I help small businesses find where leads, follow-up and admin leak — then design practical CRM and workflow fixes. I’ve spent 10+ years in CRM, lifecycle and workflow systems.</p>
+        <p style="margin-top:12px">Work is an audit, consulting, or a one-time build I hand over. I don’t take on ongoing maintenance.</p>
+        <p style="margin-top:12px"><a href="mailto:letschat@lienpham.space">letschat@lienpham.space</a> · Sydney</p>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <h2>Questions</h2>
+      <details open>
+        <summary>Is the 15-minute assessment really free?</summary>
+        <p>Yes. There’s no payment to request or take this 15-minute assessment.</p>
+      </details>
+      <details>
+        <summary>What do I get?</summary>
+        <p>One practical recommendation for one recurring bottleneck. The free session is a focused conversation, not a full written audit report.</p>
+      </details>
+      <details>
+        <summary>What happens after I submit?</summary>
+        <p>I read your answers. If the request is a fit, I’ll email you to book a time. Submitting this form does not book a slot automatically.</p>
+      </details>
+      <details>
+        <summary>What’s the difference between the free session and the paid audit?</summary>
+        <p>The free session is 15 minutes and one next move. The paid audit is a deeper look and a written report. I’ll share the details on the call if it’s useful — there’s no pressure either way.</p>
+      </details>
+      <details>
+        <summary>Do you stay on as ongoing support?</summary>
+        <p>No. Work is an audit, consulting, or a one-time build handed over. I don’t offer ongoing maintenance.</p>
+      </details>
+      <details>
+        <summary>Can I talk to a voice assistant instead?</summary>
+        <p>Not yet on this preview. A limited run of free voice assessments is planned. When those spots open, you’ll leave your contact details first, and each call will be capped at 15 minutes.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© Lien Pham · CRM, workflow and customer journey systems · Sydney</p>
+      <p>This preview is not the live lienpham.space site.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("assessment-form");
+    const status = document.getElementById("form-status");
+    const button = document.getElementById("submit-btn");
+    const success = document.getElementById("form-success");
+
+    function showError(message) {
+      status.className = "status is-error";
+      status.textContent = message;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      status.className = "status";
+      status.textContent = "";
+      if (!form.reportValidity()) return;
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      button.disabled = true;
+      button.textContent = "Sending…";
+
+      try {
+        const response = await fetch("/api/request", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "fetch",
+          },
+          body: JSON.stringify(data),
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || "Something went wrong. Please try again, or email letschat@lienpham.space.");
+        }
+        form.hidden = true;
+        success.hidden = false;
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (error) {
+        showError(error.message || "Something went wrong. Please email letschat@lienpham.space.");
+        button.disabled = false;
+        button.textContent = "Request my free assessment";
+      }
+    });
+  </script>
+</body>
+</html>
