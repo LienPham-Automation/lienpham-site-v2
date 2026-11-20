@@ -162,6 +162,7 @@
     .choices { display: grid; gap: 8px; }
     @media (min-width: 720px) {
       .choices { grid-template-columns: repeat(2, 1fr); }
+      .choices.choices-3 { grid-template-columns: repeat(3, 1fr); }
     }
     .choice {
       display: block;
@@ -202,6 +203,69 @@
     .faq details { padding: 4px 20px; margin: 0 0 10px; }
     .faq summary { cursor: pointer; font-weight: 650; padding: 14px 0; }
     .faq details p { padding: 0 0 16px; }
+
+    .hero-grid {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (min-width: 860px) {
+      .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(260px, 400px); }
+    }
+    .hero-copy h1 { max-width: 18ch; }
+    .portrait-card {
+      position: relative;
+      isolation: isolate;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .portrait-card::before {
+      content: "";
+      position: absolute;
+      inset: 28px -10px -10px 22px;
+      background: var(--red);
+      z-index: -1;
+      border-radius: 34px;
+    }
+    .portrait-frame {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-radius: 34px;
+      box-shadow: 0 28px 70px rgba(17, 63, 52, 0.16);
+      transform: rotate(1.4deg);
+    }
+    .portrait-frame img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border-radius: 24px;
+      display: block;
+      filter: saturate(0.96) contrast(1.04);
+    }
+    .char-count {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 0.82rem;
+      margin: 0 0 6px;
+    }
+    .char-count.is-short { color: var(--red-dark); }
+    .contact-note { color: var(--muted); font-size: 0.9rem; margin: 0; }
+    .thanks { padding: 36px 28px 40px; display: grid; gap: 14px; }
+    .thanks .tag {
+      justify-self: start;
+      background: var(--sand);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .thanks p { color: var(--sub); margin: 0; }
     footer { border-top: 1px solid var(--line); }
     .footer-inner { padding-top: 28px; padding-bottom: 40px; color: var(--muted); font-size: 0.92rem; }
   </style>
@@ -220,17 +284,27 @@
 
   <main id="top">
     <section class="hero">
-      <p class="eyebrow">Free 15-minute assessment</p>
-      <h1>Bring the messy follow-up. I’ll tell you what to fix first.</h1>
-      <p class="lede">Enquiries sitting in DMs, invoices you keep meaning to chase, a CRM that doesn’t quite match real life. It’s a free 15-minute chat — we’ll pick one thing worth fixing, not a pile of new tools.</p>
-      <div class="hero-actions">
-        <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
-        <a class="btn btn-ghost" href="#voice">Voice assistant — not live yet</a>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Free 15-minute assessment</p>
+          <h1>Bring the messy follow-up. I’ll tell you what to fix first.</h1>
+          <p class="lede">Enquiries sitting in DMs, invoices you keep meaning to chase, a CRM that doesn’t quite match real life. It’s a free 15-minute chat — we’ll pick one thing worth fixing, not a pile of new tools.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
+            <a class="btn btn-ghost" href="#voice">Voice assistant — not live yet</a>
+          </div>
+          <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-frame">
+            <img src="/images/lien-pham.jpg" alt="Lien Pham" width="900" height="1125">
+          </div>
+        </div>
       </div>
-      <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
     </section>
 
     <section class="section" id="assessment">
+
       <h2>A few quick questions, then I’ll take a look.</h2>
       <p class="lede">This takes a couple of minutes. I’ll read it myself, and if I can actually help, I’ll email you to set up the 15 minutes. Hitting send doesn’t book a time.</p>
 
@@ -239,89 +313,84 @@
           <div class="row row-2">
             <div>
               <label for="name">Your name</label>
-              <input id="name" name="name" autocomplete="name" required maxlength="80">
+              <input id="name" name="name" autocomplete="name" required>
             </div>
             <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" required maxlength="254">
+              <label for="email">Business email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
           </div>
           <div class="row row-2">
             <div>
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required maxlength="40">
+              <label for="businessPhone">Business phone</label>
+              <input id="businessPhone" name="businessPhone" type="tel" autocomplete="tel" inputmode="tel" required>
             </div>
             <div>
               <label for="businessName">Business name</label>
-              <input id="businessName" name="businessName" required maxlength="120">
+              <input id="businessName" name="businessName" autocomplete="organization" required>
             </div>
           </div>
           <div>
-            <label for="businessWebsite">Website <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
-            <input id="businessWebsite" name="businessWebsite" type="url" placeholder="https://" maxlength="200">
+            <label for="businessWebsite">Business website</label>
+            <input id="businessWebsite" name="businessWebsite" type="text" inputmode="url" autocomplete="url" required placeholder="company.com">
+            <span class="hint">A domain such as company.com is fine.</span>
           </div>
+          <p class="contact-note">Use an inbox you check and a business number where we can reach you about this request. US and Canadian numbers can be entered normally; include a country code elsewhere.</p>
 
           <fieldset style="border:0;padding:0;margin:0">
-            <legend class="legend">1. What’s the main thing you want help with right now?</legend>
-            <span class="hint">Pick the closest one. Then tell me, in a line or two, what’s doing your head in.</span>
-            <div class="choices" style="margin-top:10px">
-              <label class="choice"><input type="radio" name="outcome" value="time-back" required> I need time back in my week</label>
-              <label class="choice"><input type="radio" name="outcome" value="leads-going-cold"> Leads and enquiries are going cold</label>
-              <label class="choice"><input type="radio" name="outcome" value="admin-piling-up"> Invoices and admin are piling up</label>
-              <label class="choice"><input type="radio" name="outcome" value="follow-up-mess"> Follow-up is a bit of a mess</label>
+            <legend class="legend">1. If AI could fix one thing in your business in the next 30 days, would you want it to make you more money, give you back hours, or make your customers happier?</legend>
+            <span class="hint">Choose the result that matters most right now, then name one specific problem you would fix to reach it.</span>
+            <div class="choices choices-3" style="margin-top:10px">
+              <label class="choice"><input type="radio" name="desiredOutcome" value="more-money" required> Make more money</label>
+              <label class="choice"><input type="radio" name="desiredOutcome" value="give-back-hours"> Get more hours back</label>
+              <label class="choice"><input type="radio" name="desiredOutcome" value="happier-customers"> Make customers happier</label>
             </div>
           </fieldset>
-          <div>
-            <label for="problem">What’s the one thing that’s doing your head in?</label>
-            <textarea id="problem" name="problem" required minlength="8" maxlength="2000" placeholder="E.g. new enquiries sit in Instagram DMs until I remember them after the kids are in bed."></textarea>
-          </div>
-          <div>
-            <label for="repeatedTask">2. What’s the annoying job you keep doing on loop?</label>
-            <span class="hint">Chasing invoices, answering the same questions, copying names from your inbox into a spreadsheet… however it shows up for you. A couple of sentences is plenty.</span>
-            <textarea id="repeatedTask" name="repeatedTask" required minlength="8" maxlength="2000" placeholder="E.g. every Friday I copy this week’s enquiries out of email and into a spreadsheet, then chase the ones that haven’t replied."></textarea>
-          </div>
-          <div>
-            <label for="friction">3. Where does it usually go sideways?</label>
-            <span class="hint">Maybe the handoff, a tool that doesn’t talk to the others, waiting on someone, or it just lives in your head until you remember.</span>
-            <textarea id="friction" name="friction" required minlength="8" maxlength="2000" placeholder="E.g. once it’s in the spreadsheet I forget to follow up, or the quote goes out and then nothing happens."></textarea>
-          </div>
-          <div>
-            <label for="hoursOwner">4. Roughly how long does it take, and who ends up doing it?</label>
-            <span class="hint">A guesstimate is fine — you, a VA, someone on the team, or all of you after hours.</span>
-            <textarea id="hoursOwner" name="hoursOwner" required minlength="4" maxlength="2000" placeholder="E.g. about 3 hours a week, mostly me after bedtime."></textarea>
-          </div>
+
           <fieldset style="border:0;padding:0;margin:0">
-            <legend class="legend">5. What are you already using to run this?</legend>
-            <span class="hint">Tick everything that applies. No wrong answers, and you don’t need a fancy setup.</span>
-            <div class="choices" style="margin-top:10px">
-              <label class="choice"><input type="checkbox" name="tools" value="email"> Email inbox</label>
-              <label class="choice"><input type="checkbox" name="tools" value="spreadsheets"> Spreadsheets</label>
-              <label class="choice"><input type="checkbox" name="tools" value="crm"> A CRM</label>
-              <label class="choice"><input type="checkbox" name="tools" value="booking"> A booking tool</label>
-              <label class="choice"><input type="checkbox" name="tools" value="invoicing"> Invoicing software</label>
-              <label class="choice"><input type="checkbox" name="tools" value="social-dms"> Social DMs (Instagram, Facebook, etc.)</label>
-              <label class="choice"><input type="checkbox" name="tools" value="other"> Something else</label>
-            </div>
+            <legend class="legend">2. What’s the task you or your team repeat most often every week?</legend>
+            <span class="hint">Describe the steps, who does them, the tools involved, and how often the work repeats.</span>
+            <span class="char-count" data-for="repeatedTask" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
+            <textarea id="repeatedTask" name="repeatedTask" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Two coordinators copy new booking requests from a shared inbox into our CRM every morning, then email each customer to confirm."></textarea>
           </fieldset>
-          <div>
-            <label for="toolsOther">If you ticked “something else”, what is it? <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
-            <input id="toolsOther" name="toolsOther" maxlength="200" placeholder="E.g. a shared WhatsApp chat, paper notes, a bit of everything">
-          </div>
+
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend class="legend">3. Where do things most often slow down, get stuck, or fall through the cracks?</legend>
+            <span class="hint">Point to the handoff or decision that breaks, and tell us what happens when it does.</span>
+            <span class="char-count" data-for="friction" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
+            <textarea id="friction" name="friction" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Requests arriving after 4 p.m. wait until the next day, so our team sometimes misses the chance to quote first."></textarea>
+          </fieldset>
+
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend class="legend">4. How many hours a week does that eat, and who’s doing it?</legend>
+            <span class="hint">Estimate the weekly time and name the role doing the work. A rough estimate is fine.</span>
+            <span class="char-count" data-for="weeklyHoursAndOwner" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
+            <textarea id="weeklyHoursAndOwner" name="weeklyHoursAndOwner" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Our office manager spends about six hours a week on this, plus an hour of review from the owner."></textarea>
+          </fieldset>
+
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend class="legend">5. If that one thing ran itself, what would change for you?</legend>
+            <span class="hint">Describe the first result you would notice if this bottleneck improved. Be specific about time, revenue, or customer experience.</span>
+            <span class="char-count" data-for="desiredChange" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
+            <textarea id="desiredChange" name="desiredChange" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Every request would get an accurate first reply within an hour, and the office manager could spend those six hours on customer follow-up."></textarea>
+          </fieldset>
 
           <div class="hp" aria-hidden="true">
-            <label for="company_fax">Company fax</label>
-            <input id="company_fax" name="company_fax" tabindex="-1" autocomplete="off">
+            <label for="companyFax">Company fax</label>
+            <input id="companyFax" name="companyFax" type="text" tabindex="-1" autocomplete="off">
           </div>
 
           <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on, and sending this doesn’t book a time.</p>
           <div id="form-status" class="status" role="status"></div>
           <div>
-            <button class="btn" type="submit" id="submit-btn">Send my answers</button>
+            <button class="btn" type="submit" id="submit-btn">Request my free 15-minute assessment</button>
           </div>
         </form>
-        <div id="form-success" hidden style="padding:36px 28px 40px">
-          <h3>Got it. I’ll read this properly.</h3>
-          <p>If I can help, I’ll email you to find a time for the 15 minutes. Nothing else you need to do right now.</p>
+        <div id="form-success" class="thanks" hidden>
+          <span class="tag">Coming soon</span>
+          <h3>Next: talk to Lien’s voice assistant</h3>
+          <p>Thanks — I’ve got your answers. The next step will be a short chat with my voice assistant. It isn’t live on this preview yet, and nothing is connected here.</p>
+          <button class="btn is-disabled" type="button" disabled aria-disabled="true">Talk to my voice assistant (coming soon)</button>
         </div>
       </div>
     </section>
@@ -436,6 +505,29 @@
     const button = document.getElementById("submit-btn");
     const success = document.getElementById("form-success");
 
+    function formatCount(count, min, max) {
+      const formattedMax = Number(max).toLocaleString("en-US");
+      return `${count} character${count === 1 ? "" : "s"} · at least ${min}, up to ${formattedMax}`;
+    }
+
+    function updateCount(el) {
+      const field = document.getElementById(el.dataset.for);
+      if (!field) return;
+      const min = Number(el.dataset.min);
+      const max = Number(el.dataset.max);
+      const count = field.value.length;
+      el.textContent = formatCount(count, min, max);
+      el.classList.toggle("is-short", count > 0 && count < min);
+    }
+
+    document.querySelectorAll(".char-count").forEach((el) => {
+      const field = document.getElementById(el.dataset.for);
+      if (!field) return;
+      const sync = () => updateCount(el);
+      field.addEventListener("input", sync);
+      sync();
+    });
+
     function showError(message) {
       status.className = "status is-error";
       status.textContent = message;
@@ -447,13 +539,18 @@
       status.textContent = "";
       if (!form.reportValidity()) return;
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      data.tools = formData.getAll("tools");
-      if (!data.tools.length) {
-        showError("Please tick the tools you already use — even if it’s just email.");
-        return;
+      const mins = { repeatedTask: 30, friction: 30, weeklyHoursAndOwner: 15, desiredChange: 30 };
+      for (const [name, min] of Object.entries(mins)) {
+        const field = form.elements[name];
+        const count = (field.value || "").trim().length;
+        if (count < min) {
+          showError(`That answer needs at least ${min} characters.`);
+          field.focus();
+          return;
+        }
       }
+
+      const data = Object.fromEntries(new FormData(form).entries());
       button.disabled = true;
       button.textContent = "Sending…";
 
@@ -476,7 +573,7 @@
       } catch (error) {
         showError(error.message || "Something went wrong. Please email letschat@lienpham.space.");
         button.disabled = false;
-        button.textContent = "Send my answers";
+        button.textContent = "Request my free 15-minute assessment";
       }
     });
   </script>

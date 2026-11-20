@@ -4,8 +4,7 @@ import { createHash, randomUUID } from 'node:crypto';
 const NAME_MAX = 80;
 const TEXT_MAX = 2000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const OUTCOMES = new Set(['time-back', 'leads-going-cold', 'admin-piling-up', 'follow-up-mess']);
-const TOOLS = new Set(['email', 'spreadsheets', 'crm', 'booking', 'invoicing', 'social-dms', 'other']);
+const OUTCOMES = new Set(['more-money', 'give-back-hours', 'happier-customers']);
 
 function readBody(req) {
   if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
@@ -21,19 +20,15 @@ function readBody(req) {
       return {};
     }
   }
-  const params = new URLSearchParams(raw);
-  const data = Object.fromEntries(params.entries());
-  data.tools = params.getAll('tools');
-  return data;
+  return Object.fromEntries(new URLSearchParams(raw).entries());
 }
 
-function clean(value, max) {
+function cleanLine(value, max) {
   return String(value || '').trim().replace(/\s+/g, ' ').slice(0, max);
 }
 
-function listFrom(value) {
-  const items = Array.isArray(value) ? value : String(value || '').split(',');
-  return items.map((item) => clean(item, 40)).filter(Boolean);
+function cleanText(value, max) {
+  return String(value || '').replace(/\r\n/g, '\n').trim().slice(0, max);
 }
 
 function fail(res, status, error) {
@@ -56,34 +51,32 @@ export default async function handler(req, res) {
   const body = readBody(req);
 
   // Honeypot: silently succeed so bots think it worked.
-  if (body.company_fax) {
+  if (body.companyFax || body.company_fax) {
     res.status(200).json({ ok: true });
     return;
   }
 
-  const name = clean(body.name, NAME_MAX);
-  const email = clean(body.email, 254).toLowerCase();
-  const phone = clean(body.phone, 40);
-  const businessName = clean(body.businessName, 120);
-  const businessWebsite = clean(body.businessWebsite, 200);
-  const outcome = clean(body.outcome, 40);
-  const problem = clean(body.problem, TEXT_MAX);
-  const repeatedTask = clean(body.repeatedTask, TEXT_MAX);
-  const friction = clean(body.friction, TEXT_MAX);
-  const hoursOwner = clean(body.hoursOwner, TEXT_MAX);
-  const tools = listFrom(body.tools).filter((tool) => TOOLS.has(tool));
-  const toolsOther = clean(body.toolsOther, 200);
+  const name = cleanLine(body.name, NAME_MAX);
+  const email = cleanLine(body.email, 254).toLowerCase();
+  const businessPhone = cleanLine(body.businessPhone || body.phone, 40);
+  const businessName = cleanLine(body.businessName, 120);
+  const businessWebsite = cleanLine(body.businessWebsite, 200);
+  const desiredOutcome = cleanLine(body.desiredOutcome || body.outcome, 40);
+  const repeatedTask = cleanText(body.repeatedTask, TEXT_MAX);
+  const friction = cleanText(body.friction, TEXT_MAX);
+  const weeklyHoursAndOwner = cleanText(body.weeklyHoursAndOwner || body.hoursOwner, TEXT_MAX);
+  const desiredChange = cleanText(body.desiredChange || body.changeIfFixed, TEXT_MAX);
 
   if (!name) return fail(res, 400, 'Please add your name.');
   if (!EMAIL_RE.test(email)) return fail(res, 400, 'Please add a valid email address.');
-  if (!phone) return fail(res, 400, 'Please add a phone number I can reach you on.');
+  if (!businessPhone) return fail(res, 400, 'Please add a business phone number.');
   if (!businessName) return fail(res, 400, 'Please add your business name.');
-  if (!OUTCOMES.has(outcome)) return fail(res, 400, 'Please choose the main thing you want help with.');
-  if (problem.length < 8) return fail(res, 400, 'Please tell me the one thing that’s doing your head in.');
-  if (repeatedTask.length < 8) return fail(res, 400, 'Please tell me the annoying job you keep doing on loop.');
-  if (friction.length < 8) return fail(res, 400, 'Please tell me where it usually goes sideways.');
-  if (hoursOwner.length < 4) return fail(res, 400, 'Please add a rough time estimate and who does it.');
-  if (!tools.length) return fail(res, 400, 'Please tick the tools you already use — even if it’s just email.');
+  if (!businessWebsite) return fail(res, 400, 'Please add a business website. A domain such as company.com is fine.');
+  if (!OUTCOMES.has(desiredOutcome)) return fail(res, 400, 'Please choose the result that matters most right now.');
+  if (repeatedTask.length < 30) return fail(res, 400, 'The repeated task needs at least 30 characters.');
+  if (friction.length < 30) return fail(res, 400, 'Where things get stuck needs at least 30 characters.');
+  if (weeklyHoursAndOwner.length < 15) return fail(res, 400, 'Hours and who does the work needs at least 15 characters.');
+  if (desiredChange.length < 30) return fail(res, 400, 'What would change needs at least 30 characters.');
 
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     fail(res, 500, 'Assessment storage is not configured on this preview yet. Please email letschat@lienpham.space instead.');
@@ -96,16 +89,15 @@ export default async function handler(req, res) {
     id: randomUUID(),
     name,
     email,
-    phone,
+    businessPhone,
+    phone: businessPhone,
     businessName,
     businessWebsite,
-    outcome,
-    problem,
+    desiredOutcome,
     repeatedTask,
     friction,
-    hoursOwner,
-    tools,
-    toolsOther,
+    weeklyHoursAndOwner,
+    desiredChange,
     createdAt,
     source: 'lienpham-site-v2',
   };

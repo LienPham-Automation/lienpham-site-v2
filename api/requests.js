@@ -17,17 +17,26 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
-function outcomeLabel(value) {
+function outcomeLabel(row) {
+  const value = row.desiredOutcome || row.outcome;
   return {
+    'more-money': 'Make more money',
+    'give-back-hours': 'Get more hours back',
+    'happier-customers': 'Make customers happier',
+    'hours-back': 'Get more hours back',
     'time-back': 'I need time back in my week',
     'leads-going-cold': 'Leads and enquiries are going cold',
     'admin-piling-up': 'Invoices and admin are piling up',
     'follow-up-mess': 'Follow-up is a bit of a mess',
-    // Older preview values, if any were stored before the rewrite
-    'more-money': 'Make more money',
-    'hours-back': 'Get hours back',
-    'happier-customers': 'Make customers happier',
   }[value] || value || '';
+}
+
+function hoursOwner(row) {
+  return row.weeklyHoursAndOwner || row.hoursOwner || '';
+}
+
+function desiredChange(row) {
+  return row.desiredChange || row.changeIfFixed || '';
 }
 
 function toolsLabel(row) {
@@ -43,7 +52,6 @@ function toolsLabel(row) {
   const selected = Array.isArray(row.tools) ? row.tools : String(row.tools || '').split(',').filter(Boolean);
   const labels = selected.map((tool) => names[tool] || tool);
   if (row.toolsOther) labels.push(row.toolsOther);
-  if (row.changeIfFixed && !selected.length) return row.changeIfFixed;
   return labels.join(', ');
 }
 
@@ -52,15 +60,16 @@ function toCsv(rows) {
     'Timestamp (UTC)',
     'Name',
     'Email',
-    'Phone',
-    'Business',
-    'Website',
-    'Outcome',
-    'What is doing their head in',
-    'Job on loop',
-    'Where it goes sideways',
-    'Time and who',
-    'Tools',
+    'Business phone',
+    'Business name',
+    'Business website',
+    'Desired outcome',
+    'Repeated task',
+    'Where it gets stuck',
+    'Hours and who',
+    'What would change',
+    'Tools (older submissions)',
+    'Problem (older submissions)',
   ];
   const escape = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
   return (
@@ -70,15 +79,16 @@ function toCsv(rows) {
         r.createdAt,
         r.name,
         r.email,
-        r.phone,
+        r.businessPhone || r.phone,
         r.businessName,
         r.businessWebsite,
-        outcomeLabel(r.outcome),
-        r.problem,
+        outcomeLabel(r),
         r.repeatedTask,
         r.friction,
-        r.hoursOwner,
+        hoursOwner(r),
+        desiredChange(r),
         toolsLabel(r),
+        r.problem || '',
       ]),
     ]
       .map((cols) => cols.map(escape).join(','))
@@ -90,19 +100,21 @@ function renderHtml(rows) {
   const items = rows
     .map((r) => {
       const detail = [
-        ['What they want help with', outcomeLabel(r.outcome)],
-        ['What is doing their head in', r.problem],
-        ['Job on loop', r.repeatedTask],
-        ['Where it goes sideways', r.friction],
-        ['Time and who', r.hoursOwner],
-        ['Tools', toolsLabel(r)],
-      ]
+        ['Desired outcome', outcomeLabel(r)],
+        ['Repeated task', r.repeatedTask],
+        ['Where it gets stuck', r.friction],
+        ['Hours and who', hoursOwner(r)],
+        ['What would change', desiredChange(r)],
+      ];
+      if (r.problem) detail.push(['Problem (older submission)', r.problem]);
+      if (toolsLabel(r)) detail.push(['Tools (older submission)', toolsLabel(r)]);
+      const body = detail
         .map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`)
         .join('');
       return `<article class="card">
         <h2>${escapeHtml(r.name)} · ${escapeHtml(r.businessName)}</h2>
-        <p class="meta">${escapeHtml(r.createdAt)} · ${escapeHtml(r.email)} · ${escapeHtml(r.phone)}${r.businessWebsite ? ` · ${escapeHtml(r.businessWebsite)}` : ''}</p>
-        ${detail}
+        <p class="meta">${escapeHtml(r.createdAt)} · ${escapeHtml(r.email)} · ${escapeHtml(r.businessPhone || r.phone)}${r.businessWebsite ? ` · ${escapeHtml(r.businessWebsite)}` : ''}</p>
+        ${body}
       </article>`;
     })
     .join('');
