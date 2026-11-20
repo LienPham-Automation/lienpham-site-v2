@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Lien Pham — Free 15-minute assessment</title>
-  <meta name="description" content="A free 15-minute chat with Lien Pham to find what to fix first in your follow-up, inbox or admin.">
+  <meta name="description" content="A 15-minute assessment with Lien Pham to find what to fix first in your follow-up, inbox or admin. $0 for the first 5 spots.">
   <style>
     :root {
       --ink: #113F34;
@@ -200,6 +200,54 @@
       text-transform: uppercase;
     }
     .paid { margin-top: 16px; }
+    .price-offer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 10px;
+      margin: 0 0 22px;
+      font-size: 1.05rem;
+    }
+    .price-offer del, .price-offer .was {
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      font-weight: 650;
+    }
+    .price-offer .now {
+      color: var(--red-dark);
+      font-weight: 800;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+    .price-offer .spots { color: var(--sub); font-weight: 650; }
+    .price-offer.price-offer-compact {
+      margin: 0 0 16px;
+      font-size: 1rem;
+    }
+    .price-offer-compact .now { font-size: 1.2rem; }
+    .audit-card {
+      padding: 28px;
+      display: grid;
+      gap: 14px;
+    }
+    .audit-card h2, .audit-card h3 { margin: 0; }
+    .audit-price {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .audit-card ul {
+      margin: 4px 0 0;
+      padding: 0 0 0 1.15rem;
+      display: grid;
+      gap: 10px;
+      color: var(--sub);
+    }
+    .audit-card li { padding-left: 2px; }
+    .audit-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 6px; }
     .faq details { padding: 4px 20px; margin: 0 0 10px; }
     .faq summary { cursor: pointer; font-weight: 650; padding: 14px 0; }
     .faq details p { padding: 0 0 16px; }
@@ -278,6 +326,7 @@
     <a class="logo" href="#top">LIEN PHAM</a>
     <nav>
       <a href="#assessment">Assessment</a>
+      <a href="#audit">Full Assessment</a>
       <a href="#how">How it works</a>
       <a href="#about">About</a>
     </nav>
@@ -287,12 +336,13 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Free 15-minute assessment</p>
+          <p class="eyebrow">15-minute assessment</p>
           <h1>Bring the messy follow-up. I’ll tell you what to fix first.</h1>
-          <p class="lede">Enquiries sitting in DMs, invoices you keep meaning to chase, a CRM that doesn’t quite match real life. It’s a free 15-minute chat — we’ll pick one thing worth fixing, not a pile of new tools.</p>
+          <p class="lede">Enquiries sitting in DMs, invoices you keep meaning to chase, a CRM that doesn’t quite match real life. It’s a 15-minute chat — we’ll pick one thing worth fixing, not a pile of new tools.</p>
+          <p class="price-offer"><del>$199</del> <span class="now">$0</span> <span class="spots">for the first 5 spots</span></p>
           <div class="hero-actions">
-            <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
-            <a class="btn btn-ghost" href="#voice">Voice assistant — not live yet</a>
+            <a class="btn" href="#assessment">Start my 15-minute assessment</a>
+            <a class="btn btn-ghost" href="#audit">See the $497 Full Assessment</a>
           </div>
           <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
         </div>
@@ -307,6 +357,7 @@
     <section class="section" id="assessment">
 
       <h2>A few quick questions, then I’ll take a look.</h2>
+      <p class="price-offer price-offer-compact"><del>$199</del> <span class="now">$0</span> <span class="spots">for the first 5 spots</span></p>
       <p class="lede">This takes a couple of minutes. I’ll read it myself, and if I can actually help, I’ll email you to set up the 15 minutes. Hitting send doesn’t book a time.</p>
 
       <div class="form-card">
@@ -390,7 +441,7 @@
           <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on, and sending this doesn’t book a time.</p>
           <div id="form-status" class="status" role="status"></div>
           <div>
-            <button class="btn" type="submit" id="submit-btn">Request my free 15-minute assessment</button>
+            <button class="btn" type="submit" id="submit-btn">Request my 15-minute assessment</button>
           </div>
         </form>
         <div id="form-success" class="thanks" hidden>
@@ -404,7 +455,7 @@
 
     <section class="section">
       <h2>What you’ll get from the 15 minutes</h2>
-      <p class="lede">A straight conversation and one thing I’d fix first — not a long written audit. That’s a separate, paid piece if you want it later.</p>
+      <p class="lede">A straight conversation and one thing I’d fix first — not the full written plan. That’s the $497 Full Assessment, if you want it later.</p>
       <div class="grid-4">
         <div class="card">
           <h3>The job on loop</h3>
@@ -441,13 +492,29 @@
         <div class="card">
           <span class="num">03</span>
           <h3>We pick one thing to fix first</h3>
-          <p>You leave with a clear next step. Want the full written audit later? We can talk about that on the call.</p>
+          <p>You leave with a clear next step. If you want the full 45–60 minute assessment and written plan, that’s the $497 Full Assessment.</p>
         </div>
       </div>
+    </section>
 
-      <div class="paid">
-        <h3>Want the full picture later?</h3>
-        <p>The paid audit is a deeper look at how leads, CRM, follow-up and admin actually run, plus a short written report. Details on the call. Implementation, if you want it, is a separate one-time piece of work — I don’t stay on for ongoing maintenance.</p>
+    <section class="section" id="audit">
+      <div class="paid audit-card">
+        <p class="eyebrow">Full Assessment</p>
+        <p class="audit-price">$497</p>
+        <h2>45–60 minutes live with Lien, plus your written plan</h2>
+        <p>This is the full audit, not the 15-minute look. We go through how leads, CRM, follow-up and admin actually run. Then you get a plan you can use over the next few weeks.</p>
+        <ul>
+          <li><strong>45–60 minutes live with Lien</strong> — a proper working session, not a quick chat.</li>
+          <li><strong>A 2–3 week quick-wins plan</strong> — 3–5 practical fixes, with effort and what to do first.</li>
+          <li><strong>Clear next steps and a roadmap</strong> — what to start now, what can wait, and what to ignore.</li>
+          <li><strong>A short written report</strong> — executive summary, impact-effort view, and the first fix to prioritise.</li>
+        </ul>
+        <p>Implementation, if you want it, is a separate one-time piece of work. I don’t stay on for ongoing maintenance.</p>
+        <div class="audit-actions">
+          <!-- Replace the mailto href with Lien's Stripe Payment Link when she pastes it. Do not invent a Stripe URL. -->
+          <a class="btn" id="full-audit-cta" href="mailto:letschat@lienpham.space?subject=Full%20Assessment%20%24497">Email me about the $497 Full Assessment</a>
+          <a class="btn btn-ghost" href="#assessment">Or start with the 15-minute assessment</a>
+        </div>
       </div>
     </section>
 
@@ -473,20 +540,20 @@
     <section class="section faq" id="faq">
       <h2>Questions</h2>
       <details open>
-        <summary>Is this actually free?</summary>
-        <p>Yes. The 15-minute chat doesn’t cost anything to request or to have.</p>
+        <summary>Is the 15-minute assessment free?</summary>
+        <p>The usual price is $199. The first 5 spots are $0. Sending the form doesn’t book a time, and there’s no charge to request one of those spots.</p>
       </details>
       <details>
         <summary>What do I leave with?</summary>
-        <p>A clear “do this first” for the follow-up or admin that’s been bugging you. It isn’t a full written audit — that’s the paid piece, if you want it.</p>
+        <p>A clear “do this first” for the follow-up or admin that’s been bugging you. It isn’t the full written plan — that’s the $497 Full Assessment, if you want it.</p>
       </details>
       <details>
         <summary>What happens after I send this?</summary>
         <p>I read your answers. If I can help, I’ll email you to find a time. Hitting send doesn’t lock in a booking.</p>
       </details>
       <details>
-        <summary>What’s the difference between the free chat and the paid audit?</summary>
-        <p>The free chat is 15 minutes and one next step. The paid audit is a deeper look and a written report. I’ll share the details on the call if it’s useful — there’s no pressure either way.</p>
+        <summary>What’s the difference between the 15-minute assessment and the Full Assessment?</summary>
+        <p>The 15-minute assessment is a short chat and one next step. The Full Assessment is $497: 45–60 minutes live with me, plus a written plan with 2–3 week quick wins, clear next steps and a roadmap. There’s no pressure either way.</p>
       </details>
       <details>
         <summary>Do you stay on as ongoing support?</summary>
@@ -580,7 +647,7 @@
       } catch (error) {
         showError(error.message || "Something went wrong. Please email letschat@lienpham.space.");
         button.disabled = false;
-        button.textContent = "Request my free 15-minute assessment";
+        button.textContent = "Request my 15-minute assessment";
       }
     });
   </script>
