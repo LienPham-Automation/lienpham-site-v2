@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Lien Pham — Free 15-minute assessment</title>
-  <meta name="description" content="Get one clear next move for the follow-up, CRM or admin eating your week. A free 15-minute assessment with Lien Pham.">
+  <meta name="description" content="A free 15-minute chat with Lien Pham to find what to fix first in your follow-up, inbox or admin.">
   <style>
     :root {
       --ink: #113F34;
@@ -106,7 +106,7 @@
       line-height: 1.12;
       letter-spacing: -0.03em;
       margin: 0 0 16px;
-      max-width: 16ch;
+      max-width: 18ch;
     }
     .lede { font-size: 1.15rem; color: var(--sub); max-width: 42rem; margin: 0 0 28px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
@@ -160,7 +160,9 @@
       .row-3 { grid-template-columns: 1fr 1fr 1fr; }
     }
     .choices { display: grid; gap: 8px; }
-    @media (min-width: 720px) { .choices { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 720px) {
+      .choices { grid-template-columns: repeat(2, 1fr); }
+    }
     .choice {
       display: block;
       border: 1px solid var(--line);
@@ -219,18 +221,18 @@
   <main id="top">
     <section class="hero">
       <p class="eyebrow">Free 15-minute assessment</p>
-      <h1>Get one clear next move for the work eating your week.</h1>
-      <p class="lede">Show me the follow-up, CRM mess or admin that keeps stalling. I’ll help you find one practical next move in a free 15-minute conversation.</p>
+      <h1>Bring the messy follow-up. I’ll tell you what to fix first.</h1>
+      <p class="lede">Enquiries sitting in DMs, invoices you keep meaning to chase, a CRM that doesn’t quite match real life. It’s a free 15-minute chat — we’ll pick one thing worth fixing, not a pile of new tools.</p>
       <div class="hero-actions">
         <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
         <a class="btn btn-ghost" href="#voice">Voice assistant — not live yet</a>
       </div>
-      <p class="who">For small business owners and working women running a 9-to-5 or a business, drowning in follow-up, messy tools or work that only lives in someone’s head.</p>
+      <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
     </section>
 
     <section class="section" id="assessment">
-      <h2>Tell me where the work gets stuck.</h2>
-      <p class="lede">Five short answers help me prepare. If it’s a fit, I’ll be in touch to book the 15 minutes. This form does not book a time automatically.</p>
+      <h2>A few quick questions, then I’ll take a look.</h2>
+      <p class="lede">This takes a couple of minutes. I’ll read it myself, and if I can actually help, I’ll email you to set up the 15 minutes. Hitting send doesn’t book a time.</p>
 
       <div class="form-card">
         <form id="assessment-form" action="/api/request" method="post" novalidate>
@@ -260,35 +262,50 @@
           </div>
 
           <fieldset style="border:0;padding:0;margin:0">
-            <legend class="legend">1. If one thing could improve in the next 30 days, what would you want most?</legend>
-            <span class="hint">Choose the result that matters most, then name the one problem you would fix to get there.</span>
+            <legend class="legend">1. What’s the main thing you want help with right now?</legend>
+            <span class="hint">Pick the closest one. Then tell me, in a line or two, what’s doing your head in.</span>
             <div class="choices" style="margin-top:10px">
-              <label class="choice"><input type="radio" name="outcome" value="more-money" required> Make more money</label>
-              <label class="choice"><input type="radio" name="outcome" value="hours-back"> Get hours back</label>
-              <label class="choice"><input type="radio" name="outcome" value="happier-customers"> Make customers happier</label>
+              <label class="choice"><input type="radio" name="outcome" value="time-back" required> I need time back in my week</label>
+              <label class="choice"><input type="radio" name="outcome" value="leads-going-cold"> Leads and enquiries are going cold</label>
+              <label class="choice"><input type="radio" name="outcome" value="admin-piling-up"> Invoices and admin are piling up</label>
+              <label class="choice"><input type="radio" name="outcome" value="follow-up-mess"> Follow-up is a bit of a mess</label>
             </div>
           </fieldset>
           <div>
-            <label for="problem">The one problem you would fix first</label>
-            <textarea id="problem" name="problem" required minlength="10" maxlength="2000" placeholder="Be specific. “Follow-up is messy” is less useful than “new enquiries sit in Instagram DMs until I remember them.”"></textarea>
+            <label for="problem">What’s the one thing that’s doing your head in?</label>
+            <textarea id="problem" name="problem" required minlength="8" maxlength="2000" placeholder="E.g. new enquiries sit in Instagram DMs until I remember them after the kids are in bed."></textarea>
           </div>
           <div>
-            <label for="repeatedTask">2. What’s the task you or your team repeat most often every week?</label>
-            <span class="hint">A couple of sentences is enough: the steps, who does them, the tools, and how often it repeats.</span>
-            <textarea id="repeatedTask" name="repeatedTask" required minlength="20" maxlength="2000"></textarea>
+            <label for="repeatedTask">2. What’s the annoying job you keep doing on loop?</label>
+            <span class="hint">Chasing invoices, answering the same questions, copying names from your inbox into a spreadsheet… however it shows up for you. A couple of sentences is plenty.</span>
+            <textarea id="repeatedTask" name="repeatedTask" required minlength="8" maxlength="2000" placeholder="E.g. every Friday I copy this week’s enquiries out of email and into a spreadsheet, then chase the ones that haven’t replied."></textarea>
           </div>
           <div>
-            <label for="friction">3. Where do things usually slow down, get stuck, or fall through the cracks?</label>
-            <textarea id="friction" name="friction" required minlength="20" maxlength="2000"></textarea>
+            <label for="friction">3. Where does it usually go sideways?</label>
+            <span class="hint">Maybe the handoff, a tool that doesn’t talk to the others, waiting on someone, or it just lives in your head until you remember.</span>
+            <textarea id="friction" name="friction" required minlength="8" maxlength="2000" placeholder="E.g. once it’s in the spreadsheet I forget to follow up, or the quote goes out and then nothing happens."></textarea>
           </div>
           <div>
-            <label for="hoursOwner">4. How many hours a week does that eat, and who’s doing it?</label>
-            <span class="hint">A rough estimate is fine.</span>
-            <textarea id="hoursOwner" name="hoursOwner" required minlength="8" maxlength="2000"></textarea>
+            <label for="hoursOwner">4. Roughly how long does it take, and who ends up doing it?</label>
+            <span class="hint">A guesstimate is fine — you, a VA, someone on the team, or all of you after hours.</span>
+            <textarea id="hoursOwner" name="hoursOwner" required minlength="4" maxlength="2000" placeholder="E.g. about 3 hours a week, mostly me after bedtime."></textarea>
           </div>
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend class="legend">5. What are you already using to run this?</legend>
+            <span class="hint">Tick everything that applies. No wrong answers, and you don’t need a fancy setup.</span>
+            <div class="choices" style="margin-top:10px">
+              <label class="choice"><input type="checkbox" name="tools" value="email"> Email inbox</label>
+              <label class="choice"><input type="checkbox" name="tools" value="spreadsheets"> Spreadsheets</label>
+              <label class="choice"><input type="checkbox" name="tools" value="crm"> A CRM</label>
+              <label class="choice"><input type="checkbox" name="tools" value="booking"> A booking tool</label>
+              <label class="choice"><input type="checkbox" name="tools" value="invoicing"> Invoicing software</label>
+              <label class="choice"><input type="checkbox" name="tools" value="social-dms"> Social DMs (Instagram, Facebook, etc.)</label>
+              <label class="choice"><input type="checkbox" name="tools" value="other"> Something else</label>
+            </div>
+          </fieldset>
           <div>
-            <label for="changeIfFixed">5. If that one thing ran more smoothly, what would change for you?</label>
-            <textarea id="changeIfFixed" name="changeIfFixed" required minlength="20" maxlength="2000"></textarea>
+            <label for="toolsOther">If you ticked “something else”, what is it? <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+            <input id="toolsOther" name="toolsOther" maxlength="200" placeholder="E.g. a shared WhatsApp chat, paper notes, a bit of everything">
           </div>
 
           <div class="hp" aria-hidden="true">
@@ -296,38 +313,38 @@
             <input id="company_fax" name="company_fax" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="form-note">Your answers stay private and are only used to prepare this assessment. I don’t pass them on, and this does not book a time automatically.</p>
+          <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on, and sending this doesn’t book a time.</p>
           <div id="form-status" class="status" role="status"></div>
           <div>
-            <button class="btn" type="submit" id="submit-btn">Request my free assessment</button>
+            <button class="btn" type="submit" id="submit-btn">Send my answers</button>
           </div>
         </form>
         <div id="form-success" hidden style="padding:36px 28px 40px">
           <h3>Got it. I’ll read this properly.</h3>
-          <p>If it’s a fit, I’ll email you to book the 15 minutes. There’s nothing else you need to do right now.</p>
+          <p>If I can help, I’ll email you to find a time for the 15 minutes. Nothing else you need to do right now.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>What you walk away with</h2>
-      <p class="lede">The free session is a focused conversation and one practical recommendation — not the full written audit.</p>
+      <h2>What you’ll get from the 15 minutes</h2>
+      <p class="lede">A straight conversation and one thing I’d fix first — not a long written audit. That’s a separate, paid piece if you want it later.</p>
       <div class="grid-4">
         <div class="card">
-          <h3>The recurring work</h3>
-          <p>The task you or your team keep doing every week.</p>
+          <h3>The job on loop</h3>
+          <p>The follow-up, invoices or admin you keep doing by hand.</p>
         </div>
         <div class="card">
-          <h3>The point of friction</h3>
-          <p>Where that work slows, gets stuck, or falls through the cracks.</p>
+          <h3>Where it goes wrong</h3>
+          <p>The point it usually stalls, gets forgotten, or turns into a late-night catch-up.</p>
         </div>
         <div class="card">
-          <h3>The time it takes</h3>
-          <p>A practical estimate of the hours, and who owns the work.</p>
+          <h3>The time it’s costing</h3>
+          <p>A rough sense of the hours, and who’s carrying it.</p>
         </div>
         <div class="card">
-          <h3>One next move</h3>
-          <p>One recommendation matched to the outcome you care about.</p>
+          <h3>What I’d fix first</h3>
+          <p>One practical next step, in plain English. No tool-shopping spree.</p>
         </div>
       </div>
     </section>
@@ -337,18 +354,18 @@
       <div class="steps">
         <div class="card">
           <span class="num">01</span>
-          <h3>Tell me about the work</h3>
-          <p>Answer five questions so the conversation can focus on your real bottleneck.</p>
+          <h3>You tell me what’s going on</h3>
+          <p>Five quick questions about the messy bit — enquiries, follow-up, invoices or admin.</p>
         </div>
         <div class="card">
           <span class="num">02</span>
-          <h3>I review your answers</h3>
-          <p>If it’s a fit, I’ll be in touch to book a free 15-minute chat. Submission does not book a time automatically.</p>
+          <h3>I read it myself</h3>
+          <p>If I can help, I’ll email you to book 15 minutes. Sending the form isn’t a booking.</p>
         </div>
         <div class="card">
           <span class="num">03</span>
-          <h3>Leave with one next move</h3>
-          <p>You get a clear first action. If you want the full map and a written report, that’s the paid audit.</p>
+          <h3>We pick one thing to fix first</h3>
+          <p>You leave with a clear next step. Want the full written audit later? We can talk about that on the call.</p>
         </div>
       </div>
 
@@ -380,20 +397,20 @@
     <section class="section faq" id="faq">
       <h2>Questions</h2>
       <details open>
-        <summary>Is the 15-minute assessment really free?</summary>
-        <p>Yes. There’s no payment to request or take this 15-minute assessment.</p>
+        <summary>Is this actually free?</summary>
+        <p>Yes. The 15-minute chat doesn’t cost anything to request or to have.</p>
       </details>
       <details>
-        <summary>What do I get?</summary>
-        <p>One practical recommendation for one recurring bottleneck. The free session is a focused conversation, not a full written audit report.</p>
+        <summary>What do I leave with?</summary>
+        <p>A clear “do this first” for the follow-up or admin that’s been bugging you. It isn’t a full written audit — that’s the paid piece, if you want it.</p>
       </details>
       <details>
-        <summary>What happens after I submit?</summary>
-        <p>I read your answers. If the request is a fit, I’ll email you to book a time. Submitting this form does not book a slot automatically.</p>
+        <summary>What happens after I send this?</summary>
+        <p>I read your answers. If I can help, I’ll email you to find a time. Hitting send doesn’t lock in a booking.</p>
       </details>
       <details>
-        <summary>What’s the difference between the free session and the paid audit?</summary>
-        <p>The free session is 15 minutes and one next move. The paid audit is a deeper look and a written report. I’ll share the details on the call if it’s useful — there’s no pressure either way.</p>
+        <summary>What’s the difference between the free chat and the paid audit?</summary>
+        <p>The free chat is 15 minutes and one next step. The paid audit is a deeper look and a written report. I’ll share the details on the call if it’s useful — there’s no pressure either way.</p>
       </details>
       <details>
         <summary>Do you stay on as ongoing support?</summary>
@@ -430,7 +447,13 @@
       status.textContent = "";
       if (!form.reportValidity()) return;
 
-      const data = Object.fromEntries(new FormData(form).entries());
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.tools = formData.getAll("tools");
+      if (!data.tools.length) {
+        showError("Please tick the tools you already use — even if it’s just email.");
+        return;
+      }
       button.disabled = true;
       button.textContent = "Sending…";
 
@@ -453,7 +476,7 @@
       } catch (error) {
         showError(error.message || "Something went wrong. Please email letschat@lienpham.space.");
         button.disabled = false;
-        button.textContent = "Request my free assessment";
+        button.textContent = "Send my answers";
       }
     });
   </script>

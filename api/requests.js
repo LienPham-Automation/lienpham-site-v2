@@ -19,10 +19,32 @@ function escapeHtml(value) {
 
 function outcomeLabel(value) {
   return {
+    'time-back': 'I need time back in my week',
+    'leads-going-cold': 'Leads and enquiries are going cold',
+    'admin-piling-up': 'Invoices and admin are piling up',
+    'follow-up-mess': 'Follow-up is a bit of a mess',
+    // Older preview values, if any were stored before the rewrite
     'more-money': 'Make more money',
     'hours-back': 'Get hours back',
     'happier-customers': 'Make customers happier',
   }[value] || value || '';
+}
+
+function toolsLabel(row) {
+  const names = {
+    email: 'Email inbox',
+    spreadsheets: 'Spreadsheets',
+    crm: 'A CRM',
+    booking: 'A booking tool',
+    invoicing: 'Invoicing software',
+    'social-dms': 'Social DMs',
+    other: 'Something else',
+  };
+  const selected = Array.isArray(row.tools) ? row.tools : String(row.tools || '').split(',').filter(Boolean);
+  const labels = selected.map((tool) => names[tool] || tool);
+  if (row.toolsOther) labels.push(row.toolsOther);
+  if (row.changeIfFixed && !selected.length) return row.changeIfFixed;
+  return labels.join(', ');
 }
 
 function toCsv(rows) {
@@ -34,11 +56,11 @@ function toCsv(rows) {
     'Business',
     'Website',
     'Outcome',
-    'Problem',
-    'Repeated task',
-    'Friction',
-    'Hours and owner',
-    'What would change',
+    'What is doing their head in',
+    'Job on loop',
+    'Where it goes sideways',
+    'Time and who',
+    'Tools',
   ];
   const escape = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
   return (
@@ -56,7 +78,7 @@ function toCsv(rows) {
         r.repeatedTask,
         r.friction,
         r.hoursOwner,
-        r.changeIfFixed,
+        toolsLabel(r),
       ]),
     ]
       .map((cols) => cols.map(escape).join(','))
@@ -68,12 +90,12 @@ function renderHtml(rows) {
   const items = rows
     .map((r) => {
       const detail = [
-        ['Outcome', outcomeLabel(r.outcome)],
-        ['Problem', r.problem],
-        ['Repeated task', r.repeatedTask],
-        ['Friction', r.friction],
-        ['Hours and owner', r.hoursOwner],
-        ['What would change', r.changeIfFixed],
+        ['What they want help with', outcomeLabel(r.outcome)],
+        ['What is doing their head in', r.problem],
+        ['Job on loop', r.repeatedTask],
+        ['Where it goes sideways', r.friction],
+        ['Time and who', r.hoursOwner],
+        ['Tools', toolsLabel(r)],
       ]
         .map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`)
         .join('');

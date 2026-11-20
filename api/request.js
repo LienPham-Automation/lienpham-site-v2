@@ -4,7 +4,8 @@ import { createHash, randomUUID } from 'node:crypto';
 const NAME_MAX = 80;
 const TEXT_MAX = 2000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const OUTCOMES = new Set(['more-money', 'hours-back', 'happier-customers']);
+const OUTCOMES = new Set(['time-back', 'leads-going-cold', 'admin-piling-up', 'follow-up-mess']);
+const TOOLS = new Set(['email', 'spreadsheets', 'crm', 'booking', 'invoicing', 'social-dms', 'other']);
 
 function readBody(req) {
   if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
@@ -21,11 +22,18 @@ function readBody(req) {
     }
   }
   const params = new URLSearchParams(raw);
-  return Object.fromEntries(params.entries());
+  const data = Object.fromEntries(params.entries());
+  data.tools = params.getAll('tools');
+  return data;
 }
 
 function clean(value, max) {
   return String(value || '').trim().replace(/\s+/g, ' ').slice(0, max);
+}
+
+function listFrom(value) {
+  const items = Array.isArray(value) ? value : String(value || '').split(',');
+  return items.map((item) => clean(item, 40)).filter(Boolean);
 }
 
 function fail(res, status, error) {
@@ -63,18 +71,19 @@ export default async function handler(req, res) {
   const repeatedTask = clean(body.repeatedTask, TEXT_MAX);
   const friction = clean(body.friction, TEXT_MAX);
   const hoursOwner = clean(body.hoursOwner, TEXT_MAX);
-  const changeIfFixed = clean(body.changeIfFixed, TEXT_MAX);
+  const tools = listFrom(body.tools).filter((tool) => TOOLS.has(tool));
+  const toolsOther = clean(body.toolsOther, 200);
 
   if (!name) return fail(res, 400, 'Please add your name.');
   if (!EMAIL_RE.test(email)) return fail(res, 400, 'Please add a valid email address.');
   if (!phone) return fail(res, 400, 'Please add a phone number I can reach you on.');
   if (!businessName) return fail(res, 400, 'Please add your business name.');
-  if (!OUTCOMES.has(outcome)) return fail(res, 400, 'Please choose the result that matters most right now.');
-  if (problem.length < 10) return fail(res, 400, 'Please name the one problem you would fix first.');
-  if (repeatedTask.length < 20) return fail(res, 400, 'Please describe the task that repeats most often (a couple of sentences is enough).');
-  if (friction.length < 20) return fail(res, 400, 'Please say where that work usually gets stuck.');
-  if (hoursOwner.length < 8) return fail(res, 400, 'Please estimate the hours and who does the work.');
-  if (changeIfFixed.length < 20) return fail(res, 400, 'Please describe what would change if that one thing ran more smoothly.');
+  if (!OUTCOMES.has(outcome)) return fail(res, 400, 'Please choose the main thing you want help with.');
+  if (problem.length < 8) return fail(res, 400, 'Please tell me the one thing that’s doing your head in.');
+  if (repeatedTask.length < 8) return fail(res, 400, 'Please tell me the annoying job you keep doing on loop.');
+  if (friction.length < 8) return fail(res, 400, 'Please tell me where it usually goes sideways.');
+  if (hoursOwner.length < 4) return fail(res, 400, 'Please add a rough time estimate and who does it.');
+  if (!tools.length) return fail(res, 400, 'Please tick the tools you already use — even if it’s just email.');
 
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     fail(res, 500, 'Assessment storage is not configured on this preview yet. Please email letschat@lienpham.space instead.');
@@ -95,7 +104,8 @@ export default async function handler(req, res) {
     repeatedTask,
     friction,
     hoursOwner,
-    changeIfFixed,
+    tools,
+    toolsOther,
     createdAt,
     source: 'lienpham-site-v2',
   };
