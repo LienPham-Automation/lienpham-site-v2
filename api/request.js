@@ -62,6 +62,7 @@ export default async function handler(req, res) {
   const businessName = cleanLine(body.businessName, 120);
   const businessWebsite = cleanLine(body.businessWebsite, 200);
   const desiredOutcome = cleanLine(body.desiredOutcome || body.outcome, 40);
+  const specificProblem = cleanText(body.specificProblem || body.problem, TEXT_MAX);
   const repeatedTask = cleanText(body.repeatedTask, TEXT_MAX);
   const friction = cleanText(body.friction, TEXT_MAX);
   const weeklyHoursAndOwner = cleanText(body.weeklyHoursAndOwner || body.hoursOwner, TEXT_MAX);
@@ -73,6 +74,7 @@ export default async function handler(req, res) {
   if (!businessName) return fail(res, 400, 'Please add your business name.');
   if (!businessWebsite) return fail(res, 400, 'Please add a business website. A domain such as company.com is fine.');
   if (!OUTCOMES.has(desiredOutcome)) return fail(res, 400, 'Please choose the result that matters most right now.');
+  if (specificProblem.length < 15) return fail(res, 400, 'Please name one specific problem (at least 15 characters).');
   if (repeatedTask.length < 30) return fail(res, 400, 'The repeated task needs at least 30 characters.');
   if (friction.length < 30) return fail(res, 400, 'Where things get stuck needs at least 30 characters.');
   if (weeklyHoursAndOwner.length < 15) return fail(res, 400, 'Hours and who does the work needs at least 15 characters.');
@@ -94,6 +96,7 @@ export default async function handler(req, res) {
     businessName,
     businessWebsite,
     desiredOutcome,
+    specificProblem,
     repeatedTask,
     friction,
     weeklyHoursAndOwner,

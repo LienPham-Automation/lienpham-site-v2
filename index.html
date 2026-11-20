@@ -336,7 +336,7 @@
             <input id="businessWebsite" name="businessWebsite" type="text" inputmode="url" autocomplete="url" required placeholder="company.com">
             <span class="hint">A domain such as company.com is fine.</span>
           </div>
-          <p class="contact-note">Use an inbox you check and a business number where we can reach you about this request. US and Canadian numbers can be entered normally; include a country code elsewhere.</p>
+          <p class="contact-note">Use an inbox you check and a business number where we can reach you about this request. Australian numbers can be entered as 04XX XXX XXX, or with a +61 country code. For numbers outside Australia, include a country code.</p>
 
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">1. If AI could fix one thing in your business in the next 30 days, would you want it to make you more money, give you back hours, or make your customers happier?</legend>
@@ -345,6 +345,12 @@
               <label class="choice"><input type="radio" name="desiredOutcome" value="more-money" required> Make more money</label>
               <label class="choice"><input type="radio" name="desiredOutcome" value="give-back-hours"> Get more hours back</label>
               <label class="choice"><input type="radio" name="desiredOutcome" value="happier-customers"> Make customers happier</label>
+            </div>
+            <div style="margin-top:14px">
+              <label for="specificProblem">Name one specific problem</label>
+              <span class="hint">The one thing you would fix to reach that result.</span>
+              <span class="char-count" data-for="specificProblem" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
+              <textarea id="specificProblem" name="specificProblem" required minlength="15" maxlength="2000" rows="3" placeholder="For example: New enquiries sit in the inbox overnight before anyone replies."></textarea>
             </div>
           </fieldset>
 
@@ -540,7 +546,7 @@
       status.textContent = "";
       if (!form.reportValidity()) return;
 
-      const mins = { repeatedTask: 30, friction: 30, weeklyHoursAndOwner: 15, desiredChange: 30 };
+      const mins = { specificProblem: 15, repeatedTask: 30, friction: 30, weeklyHoursAndOwner: 15, desiredChange: 30 };
       for (const [name, min] of Object.entries(mins)) {
         const field = form.elements[name];
         const count = (field.value || "").trim().length;

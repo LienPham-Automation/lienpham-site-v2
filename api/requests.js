@@ -64,12 +64,12 @@ function toCsv(rows) {
     'Business name',
     'Business website',
     'Desired outcome',
+    'Specific problem',
     'Repeated task',
     'Where it gets stuck',
     'Hours and who',
     'What would change',
     'Tools (older submissions)',
-    'Problem (older submissions)',
   ];
   const escape = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
   return (
@@ -83,12 +83,12 @@ function toCsv(rows) {
         r.businessName,
         r.businessWebsite,
         outcomeLabel(r),
+        r.specificProblem || r.problem || '',
         r.repeatedTask,
         r.friction,
         hoursOwner(r),
         desiredChange(r),
         toolsLabel(r),
-        r.problem || '',
       ]),
     ]
       .map((cols) => cols.map(escape).join(','))
@@ -101,12 +101,12 @@ function renderHtml(rows) {
     .map((r) => {
       const detail = [
         ['Desired outcome', outcomeLabel(r)],
+        ['Specific problem', r.specificProblem || r.problem || ''],
         ['Repeated task', r.repeatedTask],
         ['Where it gets stuck', r.friction],
         ['Hours and who', hoursOwner(r)],
         ['What would change', desiredChange(r)],
       ];
-      if (r.problem) detail.push(['Problem (older submission)', r.problem]);
       if (toolsLabel(r)) detail.push(['Tools (older submission)', toolsLabel(r)]);
       const body = detail
         .map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`)
