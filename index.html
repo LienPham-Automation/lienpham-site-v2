@@ -255,11 +255,20 @@
 
     .hero-grid {
       display: grid;
-      gap: 40px;
+      gap: 28px 40px;
       align-items: center;
     }
+    @media (max-width: 859px) {
+      .portrait-card { max-width: 300px; }
+    }
     @media (min-width: 860px) {
-      .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(260px, 400px); }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+        grid-template-rows: auto auto;
+      }
+      .hero-copy { grid-column: 1; grid-row: 1; }
+      .portrait-card { grid-column: 2; grid-row: 1 / span 2; }
+      .hero-grid > .who { grid-column: 1; grid-row: 2; margin-top: 0; }
     }
     .hero-copy h1 { max-width: 22ch; }
     .portrait-card {
@@ -340,20 +349,20 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Free 15-minute assessment</p>
-          <h1>Bring the workflow. I’ll optimise it.</h1>
+          <h1>Bring the workflow.<br>I’ll optimise it.</h1>
           <p class="lede">Show me the follow-up, inbox or admin that’s eating your week. In a free 15-minute chat, I’ll tell you the one workflow to fix first.</p>
           <p class="price-offer"><del>USD $199</del> <span class="now">USD $0</span> <span class="spots">for the first 5 spots</span></p>
           <div class="hero-actions">
             <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
           </div>
           <p class="hero-note">Five questions to start. No payment, and sending this doesn’t book a time.</p>
-          <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
         </div>
         <div class="portrait-card">
           <div class="portrait-frame">
             <img src="/images/lien-pham.jpg" alt="Lien Pham" width="1122" height="1402">
           </div>
         </div>
+        <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
       </div>
     </section>
 
