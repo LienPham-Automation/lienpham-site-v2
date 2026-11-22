@@ -263,19 +263,21 @@
     }
     @media (min-width: 860px) {
       .hero-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
         grid-template-rows: auto auto;
       }
       .hero-copy { grid-column: 1; grid-row: 1; }
-      .portrait-card { grid-column: 2; grid-row: 1 / span 2; }
+      .portrait-card { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
       .hero-grid > .who { grid-column: 1; grid-row: 2; margin-top: 0; }
     }
     .hero-copy h1 { max-width: 22ch; }
     .portrait-card {
       position: relative;
       isolation: isolate;
-      max-width: 400px;
+      max-width: 360px;
+      width: 100%;
       margin: 0 auto;
+      height: fit-content;
     }
     .portrait-card::before {
       content: "";
@@ -292,12 +294,14 @@
       border-radius: 34px;
       box-shadow: 0 28px 70px rgba(17, 63, 52, 0.16);
       transform: rotate(1.4deg);
+      height: auto;
     }
     .portrait-frame img {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      height: auto;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
-      object-position: 50% 50%;
+      object-position: 50% 15%;
       border-radius: 24px;
       display: block;
       filter: saturate(0.96) contrast(1.04);
