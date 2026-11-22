@@ -340,6 +340,14 @@
     .stat span { color: var(--sub); font-size: 0.95rem; }
     .stats-section { padding-top: 0; padding-bottom: 24px; }
     .free-badge { color: var(--red-dark); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .quotes { display: grid; gap: 16px; margin-top: 24px; }
+    @media (min-width: 820px) { .quotes { grid-template-columns: 1fr 1fr; } }
+    .quote { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 24px; margin: 0; display: grid; gap: 14px; }
+    .quote blockquote { margin: 0; color: var(--ink); font-size: 1.02rem; }
+    .quote blockquote p { margin: 0 0 10px; }
+    .quote blockquote p:last-child { margin-bottom: 0; }
+    .quote figcaption { color: var(--sub); font-size: 0.92rem; }
+    .quote figcaption strong { color: var(--ink); display: block; }
     footer { border-top: 1px solid var(--line); }
     .footer-inner { padding-top: 28px; padding-bottom: 40px; color: var(--muted); font-size: 0.92rem; }
   </style>
@@ -369,7 +377,7 @@
           <div class="hero-actions" style="margin-top:18px">
             <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
           </div>
-          <p class="hero-note">Five short questions. No payment. I read every one myself.</p>
+          <p class="hero-note">Five short questions, then my AI assistant calls you within a minute. No payment.</p>
           <p class="tagline">No app overwhelm. No tech bro nonsense.</p>
         </div>
         <div class="portrait-card">
@@ -394,7 +402,7 @@
 
       <h2>A few quick questions, then I’ll take a look.</h2>
       <p class="price-offer price-offer-compact"><span class="now">Free</span> <span class="spots">· first 5 spots</span></p>
-      <p class="lede">About three minutes. Rough answers are fine. I’ll read it myself, and if I can actually help, I’ll email you within 2 business days to set up the 15 minutes. After the chat, you get a one-page plan within 24 hours: the one leak to fix first, why, and the next 2–3 steps.</p>
+      <p class="lede">About three minutes. Hit send and my AI assistant calls you within a minute to go through your answers and ask a couple of follow-up questions. I read every call and form myself, then we have our 15 minutes. After that, you get a one-page plan within 24 hours: the one leak to fix first, why, and the next 2–3 steps.</p>
 
       <div class="form-card">
         <form id="assessment-form" action="/api/request" method="post" novalidate>
@@ -410,8 +418,8 @@
           </div>
           <div class="row row-2">
             <div>
-              <label for="businessPhone">Phone <span class="hint" style="display:inline">(optional)</span></label>
-              <input id="businessPhone" name="businessPhone" type="tel" autocomplete="tel" inputmode="tel">
+              <label for="businessPhone">Business phone</label>
+              <input id="businessPhone" name="businessPhone" type="tel" autocomplete="tel" inputmode="tel" required>
             </div>
             <div>
               <label for="businessName">Business name</label>
@@ -419,10 +427,11 @@
             </div>
           </div>
           <div>
-            <label for="businessWebsite">Website or Instagram <span class="hint" style="display:inline">(optional)</span></label>
-            <input id="businessWebsite" name="businessWebsite" type="text" inputmode="url" autocomplete="url" placeholder="company.com or @handle">
+            <label for="businessWebsite">Business website</label>
+            <input id="businessWebsite" name="businessWebsite" type="text" inputmode="url" autocomplete="url" required placeholder="company.com">
+            <span class="hint">A domain such as company.com is fine.</span>
           </div>
-          <p class="contact-note">Use an inbox you actually check. That’s where I’ll reply.</p>
+          <p class="contact-note">Use an inbox you check and a business number where we can reach you about this request. Australian numbers can be entered as 04XX XXX XXX, or with a +61 country code. For numbers outside Australia, include a country code.</p>
 
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">1. If AI could fix one thing in your business in the next 30 days, would you want it to make you more money, give you back hours, or make your customers happier?</legend>
@@ -443,15 +452,15 @@
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">2. What’s the task you or your team repeat most often every week?</legend>
             <span class="hint">Describe the steps, who does them, the tools involved, and how often the work repeats.</span>
-            <span class="char-count" data-for="repeatedTask" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
-            <textarea id="repeatedTask" name="repeatedTask" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Two coordinators copy new booking requests from a shared inbox into our CRM every morning, then email each customer to confirm."></textarea>
+            <span class="char-count" data-for="repeatedTask" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
+            <textarea id="repeatedTask" name="repeatedTask" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Two coordinators copy new booking requests from a shared inbox into our CRM every morning, then email each customer to confirm."></textarea>
           </fieldset>
 
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">3. Where do things most often slow down, get stuck, or fall through the cracks?</legend>
             <span class="hint">Point to the handoff or decision that breaks, and tell us what happens when it does.</span>
-            <span class="char-count" data-for="friction" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
-            <textarea id="friction" name="friction" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Requests arriving after 4 p.m. wait until the next day, so our team sometimes misses the chance to quote first."></textarea>
+            <span class="char-count" data-for="friction" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
+            <textarea id="friction" name="friction" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Requests arriving after 4 p.m. wait until the next day, so our team sometimes misses the chance to quote first."></textarea>
           </fieldset>
 
           <fieldset style="border:0;padding:0;margin:0">
@@ -464,8 +473,8 @@
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">5. If that one thing ran itself, what would change for you?</legend>
             <span class="hint">Describe the first result you would notice if this bottleneck improved. Be specific about time, revenue, or customer experience.</span>
-            <span class="char-count" data-for="desiredChange" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
-            <textarea id="desiredChange" name="desiredChange" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Every request would get an accurate first reply within an hour, and the office manager could spend those six hours on customer follow-up."></textarea>
+            <span class="char-count" data-for="desiredChange" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
+            <textarea id="desiredChange" name="desiredChange" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Every request would get an accurate first reply within an hour, and the office manager could spend those six hours on customer follow-up."></textarea>
           </fieldset>
 
           <div class="hp" aria-hidden="true">
@@ -473,7 +482,11 @@
             <input id="companyFax" name="companyFax" type="text" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on.</p>
+          <label class="choice" style="font-weight:500">
+            <input type="checkbox" name="callConsent" value="yes" required>
+            Call me now. I’m happy for Lien’s AI assistant to ring the number above in the next minute to go through my answers.
+          </label>
+          <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on. The AI assistant only calls between 8 am and 8 pm Sydney time; outside those hours I’ll email you instead.</p>
           <div id="form-status" class="status" role="status"></div>
           <div>
             <button class="btn" type="submit" id="submit-btn">Request my free 15-minute assessment</button>
@@ -481,8 +494,8 @@
         </form>
         <div id="form-success" class="thanks" hidden>
           <span class="tag">Got it</span>
-          <h3>Thanks. I’ve got your answers.</h3>
-          <p>I’ll read them myself and email you within 2 business days if I can help. After our 15 minutes, your one-page fix-first plan lands within 24 hours.</p>
+          <h3 id="success-title">Thanks. Keep your phone close.</h3>
+          <p id="success-msg">My AI assistant will call you in about a minute to go through your answers. After that, I’ll read everything myself and we’ll set up our 15 minutes. Your one-page fix-first plan lands within 24 hours of our chat.</p>
           <p>Already know you want the full picture? <a href="#audit">See the Full Assessment</a>.</p>
         </div>
       </div>
@@ -521,14 +534,35 @@
         </div>
         <div class="card">
           <span class="num">02</span>
-          <h3>I read it myself</h3>
-          <p>If I can help, I’ll email you to book 15 minutes. Sending the form isn’t a booking.</p>
+          <h3>My AI assistant calls you in a minute</h3>
+          <p>A short call to go through your answers while they’re fresh. Then I read everything myself and we book our 15 minutes.</p>
         </div>
         <div class="card">
           <span class="num">03</span>
           <h3>We pick one thing to fix first</h3>
           <p>After the chat, I’ll email you a one-page plan within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. Then decide: DIY it, park it, or go deeper with the Full Assessment. No pressure cosplay.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <h2>What clients say</h2>
+      <div class="quotes">
+        <figure class="quote">
+          <blockquote>
+            <p>“Lien took the time to understand my business, how I currently operate and where I wanted to improve, before putting together a detailed and genuinely personalised assessment. What I particularly appreciated was that the recommendations weren’t just generic business advice – they were practical, relevant and tailored to my circumstances, with clear priorities and actionable steps.”</p>
+            <p>“I came away with a much clearer direction and a number of ideas that I can start implementing straight away, without feeling overwhelmed by the process.”</p>
+          </blockquote>
+          <figcaption><strong>Kelly Stanton</strong>Managing Owner &amp; Bookkeeper, Perfect Pages Bookkeeping</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>
+            <p>“…this is absolutely brilliant - right down to the plan specifying my Wednesday and naptime to-do’s.”</p>
+            <p>“…you have made it easy to get started, and there are potential solutions here that I hadn’t even thought of exploring, which is so exciting!”</p>
+            <p>“Our chat and the report that you have put together has been so beneficial and I would recommend to any other businesses that are looking to streamline their processes.”</p>
+          </blockquote>
+          <figcaption><strong>Michelle Valastro</strong>Director, OMM Label</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -638,7 +672,7 @@
       status.textContent = "";
       if (!form.reportValidity()) return;
 
-      const mins = { specificProblem: 15, repeatedTask: 15, friction: 15, weeklyHoursAndOwner: 15, desiredChange: 15 };
+      const mins = { specificProblem: 15, repeatedTask: 30, friction: 30, weeklyHoursAndOwner: 15, desiredChange: 30 };
       for (const [name, min] of Object.entries(mins)) {
         const field = form.elements[name];
         const count = (field.value || "").trim().length;
@@ -665,6 +699,10 @@
         const payload = await response.json().catch(() => ({}));
         if (!response.ok || !payload.ok) {
           throw new Error(payload.error || "Something went wrong. Please try again, or email letschat@lienpham.space.");
+        }
+        if (payload.call !== "started") {
+          document.getElementById("success-title").textContent = "Thanks. I’ve got your answers.";
+          document.getElementById("success-msg").textContent = "I’ll read them myself and email you to set up our 15 minutes. Your one-page fix-first plan lands within 24 hours of our chat.";
         }
         form.hidden = true;
         success.hidden = false;
