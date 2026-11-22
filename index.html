@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Lien Pham: Free 15-minute assessment</title>
-  <meta name="description" content="A free 15-minute assessment with Lien Pham. You get a 15-minute chat, then a one-page plan in your inbox within 24 hours. AUD $0 for the first 5 spots.">
+  <meta name="description" content="Bring the messy business. Lien Pham finds where leads, follow-up and admin leak. Free 15-minute assessment, limited spots, plus a one-page fix-first plan within 24 hours.">
   <style>
     :root {
       --ink: #113F34;
@@ -332,6 +332,14 @@
       text-transform: uppercase;
     }
     .thanks p { color: var(--sub); margin: 0; }
+    .tagline { font-weight: 700; color: var(--ink); margin: 14px 0 0; }
+    .stats { display: grid; gap: 12px; margin-top: 8px; }
+    @media (min-width: 720px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+    .stat { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+    .stat strong { display: block; font-size: 1.6rem; letter-spacing: -0.03em; color: var(--red-dark); line-height: 1.1; margin-bottom: 6px; }
+    .stat span { color: var(--sub); font-size: 0.95rem; }
+    .stats-section { padding-top: 0; padding-bottom: 24px; }
+    .free-badge { color: var(--red-dark); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
     footer { border-top: 1px solid var(--line); }
     .footer-inner { padding-top: 28px; padding-bottom: 40px; color: var(--muted); font-size: 0.92rem; }
   </style>
@@ -342,7 +350,7 @@
   <header>
     <a class="logo" href="#top">LIEN PHAM</a>
     <nav>
-      <a href="#assessment">Assessment</a>
+      <a href="#assessment">Free assessment</a>
       <a href="#audit">Full Assessment</a>
       <a href="#how">How it works</a>
       <a href="#about">About</a>
@@ -353,30 +361,40 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Free 15-minute assessment</p>
-          <h1>Bring the workflow.<br>I’ll optimise it.</h1>
-          <p class="lede">Show me the follow-up, inbox or admin that’s eating your week. In a free 15-minute chat, I’ll tell you the one workflow to fix first.</p>
-          <p class="price-offer"><del>AUD $199</del> <span class="now">AUD $0</span> <span class="spots">for the first 5 spots</span></p>
+          <p class="eyebrow">Audit · Optimise · Automate</p>
+          <h1>Bring the messy business.<br>I’ll find the leaks.</h1>
+          <p class="lede">Tell me about the enquiries going cold, the follow-up living in someone’s head, or the admin eating your week. In a free 15-minute assessment, I’ll find the one leak to fix first.</p>
+          <p class="price-offer"><span class="now">Free</span> <span class="spots">· limited to the first 5 spots</span></p>
           <p class="hero-get">You get: a 15-minute chat, plus a one-page “fix this first” plan in your inbox within 24 hours.</p>
-          <div class="hero-actions">
+          <div class="hero-actions" style="margin-top:18px">
             <a class="btn" href="#assessment">Start my free 15-minute assessment</a>
           </div>
-          <p class="hero-note">Five questions to start. No payment, and sending this doesn’t book a time.</p>
+          <p class="hero-note">Five short questions. No payment. I read every one myself.</p>
+          <p class="tagline">No app overwhelm. No tech bro nonsense.</p>
         </div>
         <div class="portrait-card">
           <div class="portrait-frame">
             <img src="/images/lien-pham.jpg" alt="Lien Pham" width="1122" height="1402">
           </div>
         </div>
-        <p class="who">For small business owners and working women running a 9-to-5 or a business, juggling enquiries, follow-up and admin that somehow still lands after bedtime.</p>
+        <p class="who">For founders, coaches, consultants, ecommerce brands and small teams buried in follow-up, admin, CRM chaos or missed enquiries that somehow still land after bedtime.</p>
+      </div>
+    </section>
+
+    <section class="section stats-section" aria-label="Background">
+      <div class="stats">
+        <div class="stat"><strong>10+ yrs</strong><span>CRM, lifecycle, ecommerce and workflow systems</span></div>
+        <div class="stat"><strong>32k+</strong><span>B2B users across CRM, lifecycle and customer journeys</span></div>
+        <div class="stat"><strong>Finance brain</strong><span>Revenue, margin and ROI before shiny objects</span></div>
+        <div class="stat"><strong>24 hrs</strong><span>Your one-page fix-first plan lands after the chat</span></div>
       </div>
     </section>
 
     <section class="section" id="assessment">
 
       <h2>A few quick questions, then I’ll take a look.</h2>
-      <p class="price-offer price-offer-compact"><del>AUD $199</del> <span class="now">AUD $0</span> <span class="spots">for the first 5 spots</span></p>
-      <p class="lede">This takes a couple of minutes. I’ll read it myself, and if I can actually help, I’ll email you to set up the 15 minutes. After the chat, I’ll send a one-page plan within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. Hitting send doesn’t book a time.</p>
+      <p class="price-offer price-offer-compact"><span class="now">Free</span> <span class="spots">· first 5 spots</span></p>
+      <p class="lede">About three minutes. Rough answers are fine. I’ll read it myself, and if I can actually help, I’ll email you within 2 business days to set up the 15 minutes. After the chat, you get a one-page plan within 24 hours: the one leak to fix first, why, and the next 2–3 steps.</p>
 
       <div class="form-card">
         <form id="assessment-form" action="/api/request" method="post" novalidate>
@@ -392,8 +410,8 @@
           </div>
           <div class="row row-2">
             <div>
-              <label for="businessPhone">Business phone</label>
-              <input id="businessPhone" name="businessPhone" type="tel" autocomplete="tel" inputmode="tel" required>
+              <label for="businessPhone">Phone <span class="hint" style="display:inline">(optional)</span></label>
+              <input id="businessPhone" name="businessPhone" type="tel" autocomplete="tel" inputmode="tel">
             </div>
             <div>
               <label for="businessName">Business name</label>
@@ -401,11 +419,10 @@
             </div>
           </div>
           <div>
-            <label for="businessWebsite">Business website</label>
-            <input id="businessWebsite" name="businessWebsite" type="text" inputmode="url" autocomplete="url" required placeholder="company.com">
-            <span class="hint">A domain such as company.com is fine.</span>
+            <label for="businessWebsite">Website or Instagram <span class="hint" style="display:inline">(optional)</span></label>
+            <input id="businessWebsite" name="businessWebsite" type="text" inputmode="url" autocomplete="url" placeholder="company.com or @handle">
           </div>
-          <p class="contact-note">Use an inbox you check and a business number where we can reach you about this request. Australian numbers can be entered as 04XX XXX XXX, or with a +61 country code. For numbers outside Australia, include a country code.</p>
+          <p class="contact-note">Use an inbox you actually check. That’s where I’ll reply.</p>
 
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">1. If AI could fix one thing in your business in the next 30 days, would you want it to make you more money, give you back hours, or make your customers happier?</legend>
@@ -426,15 +443,15 @@
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">2. What’s the task you or your team repeat most often every week?</legend>
             <span class="hint">Describe the steps, who does them, the tools involved, and how often the work repeats.</span>
-            <span class="char-count" data-for="repeatedTask" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
-            <textarea id="repeatedTask" name="repeatedTask" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Two coordinators copy new booking requests from a shared inbox into our CRM every morning, then email each customer to confirm."></textarea>
+            <span class="char-count" data-for="repeatedTask" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
+            <textarea id="repeatedTask" name="repeatedTask" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Two coordinators copy new booking requests from a shared inbox into our CRM every morning, then email each customer to confirm."></textarea>
           </fieldset>
 
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">3. Where do things most often slow down, get stuck, or fall through the cracks?</legend>
             <span class="hint">Point to the handoff or decision that breaks, and tell us what happens when it does.</span>
-            <span class="char-count" data-for="friction" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
-            <textarea id="friction" name="friction" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Requests arriving after 4 p.m. wait until the next day, so our team sometimes misses the chance to quote first."></textarea>
+            <span class="char-count" data-for="friction" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
+            <textarea id="friction" name="friction" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Requests arriving after 4 p.m. wait until the next day, so our team sometimes misses the chance to quote first."></textarea>
           </fieldset>
 
           <fieldset style="border:0;padding:0;margin:0">
@@ -447,8 +464,8 @@
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="legend">5. If that one thing ran itself, what would change for you?</legend>
             <span class="hint">Describe the first result you would notice if this bottleneck improved. Be specific about time, revenue, or customer experience.</span>
-            <span class="char-count" data-for="desiredChange" data-min="30" data-max="2000">0 characters · at least 30, up to 2,000</span>
-            <textarea id="desiredChange" name="desiredChange" required minlength="30" maxlength="2000" rows="4" placeholder="For example: Every request would get an accurate first reply within an hour, and the office manager could spend those six hours on customer follow-up."></textarea>
+            <span class="char-count" data-for="desiredChange" data-min="15" data-max="2000">0 characters · at least 15, up to 2,000</span>
+            <textarea id="desiredChange" name="desiredChange" required minlength="15" maxlength="2000" rows="4" placeholder="For example: Every request would get an accurate first reply within an hour, and the office manager could spend those six hours on customer follow-up."></textarea>
           </fieldset>
 
           <div class="hp" aria-hidden="true">
@@ -456,24 +473,24 @@
             <input id="companyFax" name="companyFax" type="text" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on, and sending this doesn’t book a time.</p>
+          <p class="form-note">I’ll only use this to prepare for our chat. I don’t pass it on.</p>
           <div id="form-status" class="status" role="status"></div>
           <div>
             <button class="btn" type="submit" id="submit-btn">Request my free 15-minute assessment</button>
           </div>
         </form>
         <div id="form-success" class="thanks" hidden>
-          <span class="tag">Coming soon</span>
-          <h3>Next: talk to Lien’s voice assistant</h3>
-          <p>Thanks. I’ve got your answers. After the 15-minute chat, I’ll email you a one-page plan within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. The next step on this preview will be a short chat with my voice assistant. It isn’t live yet, and nothing is connected here.</p>
-          <button class="btn is-disabled" type="button" disabled aria-disabled="true">Talk to my voice assistant (coming soon)</button>
+          <span class="tag">Got it</span>
+          <h3>Thanks. I’ve got your answers.</h3>
+          <p>I’ll read them myself and email you within 2 business days if I can help. After our 15 minutes, your one-page fix-first plan lands within 24 hours.</p>
+          <p>Already know you want the full picture? <a href="#audit">See the Full Assessment</a>.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <h2>What you’ll get from the 15 minutes</h2>
-      <p class="lede">You get a 15-minute chat, plus a one-page plan in your inbox within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. It isn’t the full written plan. That’s the AUD $497 Full Assessment, if you want it later.</p>
+      <p class="lede">A 15-minute chat, plus a one-page plan in your inbox within 24 hours: the one leak to fix first, why, and the next 2–3 steps. Audit first, optimise next, automate last. The full map of your business is the Full Assessment, if you want it later.</p>
       <div class="grid-4">
         <div class="card">
           <h3>The job on loop</h3>
@@ -510,7 +527,7 @@
         <div class="card">
           <span class="num">03</span>
           <h3>We pick one thing to fix first</h3>
-          <p>After the chat, I’ll email you a one-page plan within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. If you want the 45–60 minute assessment and the full written plan, that’s the AUD $497 Full Assessment.</p>
+          <p>After the chat, I’ll email you a one-page plan within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. Then decide: DIY it, park it, or go deeper with the Full Assessment. No pressure cosplay.</p>
         </div>
       </div>
     </section>
@@ -520,12 +537,14 @@
         <p class="eyebrow">Full Assessment</p>
         <p class="audit-price">AUD $497</p>
         <h2>45–60 minutes live with Lien, plus your written plan</h2>
-        <p>This is the full audit, not the 15-minute look. We go through how leads, CRM, follow-up and admin actually run. Then you get a plan you can use over the next few weeks.</p>
+        <p>This is the full audit, not the 15-minute look. We walk the whole journey, from first enquiry to repeat business: leads, CRM, follow-up, content, customer touchpoints, admin and reactivation. Then you get a written report you can act on over the next few weeks.</p>
         <ul>
-          <li><strong>45–60 minutes live with Lien</strong>: a proper working session, not a quick chat.</li>
-          <li><strong>A 2–3 week quick-wins plan</strong>: 3–5 practical fixes, with effort and what to do first.</li>
-          <li><strong>Clear next steps and a roadmap</strong>: what to start now, what can wait, and what to ignore.</li>
-          <li><strong>A short written report</strong>: executive summary, impact-effort view, and the first fix to prioritise.</li>
+          <li><strong>45–60 minutes live with Lien</strong>: a proper diagnostic session. Bring the real business mess; I’ll bring the sharp questions.</li>
+          <li><strong>Executive summary</strong>: the pain, the outcome you want, and the win that matters most.</li>
+          <li><strong>Impact-Effort Matrix</strong>: quick wins, bigger projects, nice-to-haves, and things to ignore.</li>
+          <li><strong>3–5 quick wins for the next 2–3 weeks</strong>: the tools, automations or workflow fixes matched to each pain point, with effort and time saved.</li>
+          <li><strong>The first fix to prioritise</strong>: what to do first, what can wait, and the exact next step.</li>
+          <li><strong>Report within 24 hours</strong> of the session.</li>
         </ul>
         <p>Implementation, if you want it, is a separate one-time piece of work. I don’t stay on for ongoing maintenance.</p>
         <div class="audit-actions">
@@ -536,20 +555,12 @@
       </div>
     </section>
 
-    <section class="section" id="voice">
-      <h2>Talk it through with a voice assistant</h2>
-      <div class="voice-card">
-        <span class="tag">Not live yet · limited free spots</span>
-        <h3>Talk to my voice assistant</h3>
-        <p>A free, capped 15-minute voice assessment is being set up. It isn’t available on this preview, and no voice agent is connected here. When the first 20 spots open, this is where you’ll start the call, after leaving your name and email.</p>
-        <button class="btn is-disabled" type="button" disabled aria-disabled="true">Talk to my voice assistant (limited free spots)</button>
-      </div>
-    </section>
 
     <section class="section" id="about">
       <h2>About Lien</h2>
       <div class="about-card">
-        <p>I’m Lien Pham, a working mum in Sydney. I help small businesses find where leads, follow-up and admin leak, then design practical CRM and workflow fixes. I’ve spent 10+ years in CRM, lifecycle and workflow systems.</p>
+        <p>I’m Lien Pham, a working mum in Sydney. I help small businesses find where leads, follow-up and admin leak, then design practical CRM and workflow fixes. I’ve spent 10+ years in CRM, lifecycle and workflow systems, and I built a B2B lifecycle marketing function from scratch.</p>
+        <p style="margin-top:12px">I trained in accounting (Master of Professional Accounting, ex-Grant Thornton), so I look at revenue, margin and ROI before shiny tools. I also ran my own ecommerce brand, Selfamour, from 2020 to 2023, including its Meta ads, so I know what it’s like when the admin lands after bedtime.</p>
         <p style="margin-top:12px">Work is an audit, consulting, or a one-time build I hand over. I don’t take on ongoing maintenance.</p>
         <p style="margin-top:12px"><a href="mailto:letschat@lienpham.space">letschat@lienpham.space</a> · Sydney</p>
       </div>
@@ -559,11 +570,11 @@
       <h2>Questions</h2>
       <details open>
         <summary>Is the 15-minute assessment free?</summary>
-        <p>The usual price is AUD $199. The first 5 spots are AUD $0. Sending the form doesn’t book a time, and there’s no charge to request one of those spots.</p>
+        <p>Yes, for the first 5 spots. No payment details needed. Sending the form doesn’t book a time; I’ll email you if I can help.</p>
       </details>
       <details>
         <summary>What do I leave with?</summary>
-        <p>A 15-minute chat, plus a one-page plan in your inbox within 24 hours: the one workflow to fix first, why, and the next 2–3 steps. It isn’t the full written plan. That’s the AUD $497 Full Assessment, if you want it.</p>
+        <p>A 15-minute chat, plus a one-page plan in your inbox within 24 hours: the one leak to fix first, why, and the next 2–3 steps. The full report with the Impact-Effort Matrix is the AUD $497 Full Assessment, if you want it.</p>
       </details>
       <details>
         <summary>What happens after I send this?</summary>
@@ -571,15 +582,11 @@
       </details>
       <details>
         <summary>What’s the difference between the 15-minute assessment and the Full Assessment?</summary>
-        <p>The 15-minute assessment is a short chat, plus a one-page plan in your inbox within 24 hours covering the one workflow to fix first, why, and the next 2–3 steps. The Full Assessment is AUD $497: 45–60 minutes live with me, plus a written plan with 2–3 week quick wins, clear next steps and a roadmap. There’s no pressure either way.</p>
+        <p>The free assessment finds the one leak to fix first. The Full Assessment (AUD $497) maps the whole journey: 45–60 minutes live with me, then a written report within 24 hours with an executive summary, Impact-Effort Matrix, 3–5 quick wins and your first fix. No pressure either way.</p>
       </details>
       <details>
         <summary>Do you stay on as ongoing support?</summary>
         <p>No. Work is an audit, consulting, or a one-time build handed over. I don’t offer ongoing maintenance.</p>
-      </details>
-      <details>
-        <summary>Can I talk to a voice assistant instead?</summary>
-        <p>Not yet on this preview. A limited run of free voice assessments is planned. When those spots open, you’ll leave your contact details first, and each call will be capped at 15 minutes.</p>
       </details>
     </section>
   </main>
@@ -631,7 +638,7 @@
       status.textContent = "";
       if (!form.reportValidity()) return;
 
-      const mins = { specificProblem: 15, repeatedTask: 30, friction: 30, weeklyHoursAndOwner: 15, desiredChange: 30 };
+      const mins = { specificProblem: 15, repeatedTask: 15, friction: 15, weeklyHoursAndOwner: 15, desiredChange: 15 };
       for (const [name, min] of Object.entries(mins)) {
         const field = form.elements[name];
         const count = (field.value || "").trim().length;

@@ -70,15 +70,13 @@ export default async function handler(req, res) {
 
   if (!name) return fail(res, 400, 'Please add your name.');
   if (!EMAIL_RE.test(email)) return fail(res, 400, 'Please add a valid email address.');
-  if (!businessPhone) return fail(res, 400, 'Please add a business phone number.');
   if (!businessName) return fail(res, 400, 'Please add your business name.');
-  if (!businessWebsite) return fail(res, 400, 'Please add a business website. A domain such as company.com is fine.');
   if (!OUTCOMES.has(desiredOutcome)) return fail(res, 400, 'Please choose the result that matters most right now.');
   if (specificProblem.length < 15) return fail(res, 400, 'Please name one specific problem (at least 15 characters).');
-  if (repeatedTask.length < 30) return fail(res, 400, 'The repeated task needs at least 30 characters.');
-  if (friction.length < 30) return fail(res, 400, 'Where things get stuck needs at least 30 characters.');
+  if (repeatedTask.length < 15) return fail(res, 400, 'The repeated task needs at least 15 characters.');
+  if (friction.length < 15) return fail(res, 400, 'Where things get stuck needs at least 15 characters.');
   if (weeklyHoursAndOwner.length < 15) return fail(res, 400, 'Hours and who does the work needs at least 15 characters.');
-  if (desiredChange.length < 30) return fail(res, 400, 'What would change needs at least 30 characters.');
+  if (desiredChange.length < 15) return fail(res, 400, 'What would change needs at least 15 characters.');
 
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     fail(res, 500, 'Assessment storage is not configured on this preview yet. Please email letschat@lienpham.space instead.');
