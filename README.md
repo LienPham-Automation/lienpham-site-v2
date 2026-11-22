@@ -1,4 +1,4 @@
-# lienpham.space v2 — preview only
+# lienpham.space v2: preview only
 
 A shorter rebuild of [lienpham.space](https://lienpham.space), with a free 15-minute assessment as the main offer.
 
